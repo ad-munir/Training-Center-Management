@@ -32,7 +32,7 @@ public class Course {
     @JoinColumn(name = "company_id")
     private Company company;
 
-    @OneToMany(mappedBy = "course")
+    @ManyToMany(mappedBy = "courses")
     private List<Participant> participants;
 
     @OneToMany(mappedBy = "course")

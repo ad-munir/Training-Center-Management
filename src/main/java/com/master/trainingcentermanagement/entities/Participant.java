@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @AllArgsConstructor @NoArgsConstructor @Data
 @Entity
@@ -21,9 +22,13 @@ public class Participant {
     String phone ;
     String city ;
 
-    @ManyToOne
-    @JoinColumn(name = "course_id")
-    private Course course;
+    @ManyToMany
+    @JoinTable(
+            name = "participant_formation",
+            joinColumns = @JoinColumn(name = "participant_id"),
+            inverseJoinColumns = @JoinColumn(name = "formation_id")
+    )
+    private List<Course> courses;
 
 
 }
