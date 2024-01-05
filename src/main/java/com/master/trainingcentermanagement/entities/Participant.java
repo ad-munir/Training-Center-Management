@@ -24,9 +24,9 @@ public class Participant {
 
     @ManyToMany
     @JoinTable(
-            name = "participant_formation",
+            name = "participant_course",
             joinColumns = @JoinColumn(name = "participant_id"),
-            inverseJoinColumns = @JoinColumn(name = "formation_id")
+            inverseJoinColumns = @JoinColumn(name = "course_id")
     )
     private List<Course> courses;
 
