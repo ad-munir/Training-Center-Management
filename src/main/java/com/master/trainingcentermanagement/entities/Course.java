@@ -20,10 +20,10 @@ public class Course {
     String type ;
     String category ;
     float cost ;
-
-    @ManyToOne
-    @JoinColumn(name = "trainer_id")
-    private User trainer;
+//
+//    @ManyToOne
+//    @JoinColumn(name = "trainer_id")
+//    private User trainer;
 
     @OneToMany(mappedBy = "course")
     private List<Feedback> feedbacks;
