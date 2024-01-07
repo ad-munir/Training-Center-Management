@@ -1,10 +1,8 @@
-package com.master.trainingcentermanagement.controller;
+package com.master.trainingcentermanagement.controllerss;
 
 
-import com.master.trainingcentermanagement.entities.Course;
 import com.master.trainingcentermanagement.entities.Feedback;
-import com.master.trainingcentermanagement.services.CourceService;
-import com.master.trainingcentermanagement.services.FeedbackService;
+import com.master.trainingcentermanagement.services.FeedbackServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,7 +12,7 @@ import java.util.List;
 public class FreedbackController {
 
     @Autowired
-    FeedbackService feedbackService;
+    FeedbackServiceImpl feedbackService;
     @PostMapping("/addFeedback")
     public Feedback addFeedback(@RequestBody Feedback Feedback){
         return feedbackService.saveFeedback(Feedback);

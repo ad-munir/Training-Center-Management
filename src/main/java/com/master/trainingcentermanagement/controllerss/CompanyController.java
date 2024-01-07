@@ -1,8 +1,8 @@
-package com.master.trainingcentermanagement.controller;
+package com.master.trainingcentermanagement.controllerss;
 
-import com.master.trainingcentermanagement.Repositories.CompanyRepo;
+import com.master.trainingcentermanagement.dto.CompanyDTO;
 import com.master.trainingcentermanagement.entities.Company;
-import com.master.trainingcentermanagement.services.CompanyService;
+import com.master.trainingcentermanagement.services.CompanyServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.*;
@@ -15,15 +15,15 @@ import java.util.List;
 public class CompanyController {
 
     @Autowired
-    CompanyService companyService;
+    CompanyServiceImpl companyService;
     @PostMapping("/addCompany")
-    public Company addCompany(@RequestBody Company company){
+    public Company addCompany(@RequestBody CompanyDTO company){
         return companyService.saveCompany(company);
 
      }
 
     @GetMapping("/findCompany")
-    public List<Company> findCompany(){
+    public List<CompanyDTO> findCompany(){
 
         return companyService.listCompany();
     }

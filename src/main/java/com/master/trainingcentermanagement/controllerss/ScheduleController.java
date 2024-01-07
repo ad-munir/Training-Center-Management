@@ -1,7 +1,7 @@
-package com.master.trainingcentermanagement.controller;
+package com.master.trainingcentermanagement.controllerss;
 
 import com.master.trainingcentermanagement.entities.Schedule;
-import com.master.trainingcentermanagement.services.ScheduleService;
+import com.master.trainingcentermanagement.services.ScheduleServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,7 +12,7 @@ public class ScheduleController {
 
 
     @Autowired
-    ScheduleService scheduleService;
+    ScheduleServiceImpl scheduleService;
     @PostMapping("/addschedule")
     public Schedule addschedule(@RequestBody Schedule schedule){
         return scheduleService.saveParticipant(schedule);

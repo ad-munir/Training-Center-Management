@@ -1,31 +1,19 @@
 package com.master.trainingcentermanagement.services;
 
 
-import com.master.trainingcentermanagement.Repositories.CompanyRepo;
-import com.master.trainingcentermanagement.Repositories.CourseRepo;
-import com.master.trainingcentermanagement.entities.Company;
+import com.master.trainingcentermanagement.dto.CourseDTO;
 import com.master.trainingcentermanagement.entities.Course;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+
 
 import java.util.List;
 
-@Service
-public class CourceService {
+
+public interface CourceService {
 
 
-    @Autowired
-    CourseRepo courseRepo;
+    public Course saveCourse(CourseDTO course);
 
-    public Course saveCourse(Course course) {
-        return courseRepo.save(course);
-    }
+    public List<CourseDTO> listCourse() ;
 
-    public List<Course> listCourse() {
-        return courseRepo.findAll();
-    }
-
-    public void deleteCourse(Long id) {
-        courseRepo.deleteById(id);
-    }
+    public void deleteCourse(Long id) ;
 }

@@ -1,4 +1,4 @@
-package com.master.trainingcentermanagement.controller;
+package com.master.trainingcentermanagement.controllerss;
 
 
 import lombok.RequiredArgsConstructor;

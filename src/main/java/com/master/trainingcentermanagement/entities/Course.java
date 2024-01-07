@@ -1,6 +1,7 @@
 package com.master.trainingcentermanagement.entities;
 
 
+import com.master.trainingcentermanagement.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,10 +21,10 @@ public class Course {
     String type ;
     String category ;
     float cost ;
-//
-//    @ManyToOne
-//    @JoinColumn(name = "trainer_id")
-//    private User trainer;
+
+    @ManyToOne
+    @JoinColumn(name = "trainer_id")
+    private User trainer;
 
     @OneToMany(mappedBy = "course")
     private List<Feedback> feedbacks;

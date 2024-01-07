@@ -1,25 +1,17 @@
 package com.master.trainingcentermanagement.services;
 
-import com.master.trainingcentermanagement.Repositories.CompanyRepo;
+import com.master.trainingcentermanagement.dto.CompanyDTO;
 import com.master.trainingcentermanagement.entities.Company;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+
 
 import java.util.List;
-@Service
-public class CompanyService {
-    @Autowired
-    CompanyRepo companyRepo;
+public interface CompanyService {
 
-    public Company saveCompany(Company company) {
-        return companyRepo.save(company);
-    }
 
-    public List<Company> listCompany() {
-        return companyRepo.findAll();
-    }
+    public Company saveCompany(CompanyDTO company) ;
 
-    public void deleteCompany(Long id) {
-        companyRepo.deleteById(id);
-    }
+    public List<CompanyDTO> listCompany() ;
+
+    public void deleteCompany(Long id) ;
+
 }

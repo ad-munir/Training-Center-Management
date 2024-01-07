@@ -23,8 +23,5 @@ public class Company {
     String email ;
     String phone ;
     String url ;
-
-    @OneToMany(mappedBy = "company")
-    private List<Course> courses;
-
+    private List<Long> courseIds;
 }

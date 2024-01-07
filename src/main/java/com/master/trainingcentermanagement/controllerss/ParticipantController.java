@@ -1,10 +1,8 @@
-package com.master.trainingcentermanagement.controller;
+package com.master.trainingcentermanagement.controllerss;
 
 
-import com.master.trainingcentermanagement.entities.Feedback;
 import com.master.trainingcentermanagement.entities.Participant;
-import com.master.trainingcentermanagement.services.FeedbackService;
-import com.master.trainingcentermanagement.services.ParticipantService;
+import com.master.trainingcentermanagement.services.ParticipantServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +11,7 @@ import java.util.List;
 @RestController
 public class ParticipantController {
     @Autowired
-    ParticipantService participantService;
+    ParticipantServiceImpl participantService;
     @PostMapping("/addParticipant")
     public Participant addFeedback(@RequestBody Participant participant){
         return participantService.saveParticipant(participant);
