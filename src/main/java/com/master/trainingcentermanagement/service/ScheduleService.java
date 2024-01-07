@@ -1,6 +1,7 @@
 package com.master.trainingcentermanagement.service;
 
 
+import com.master.trainingcentermanagement.dto.ScheduleDTO;
 import com.master.trainingcentermanagement.entity.Schedule;
 
 import java.util.List;
@@ -9,11 +10,9 @@ import java.util.List;
 
 public interface ScheduleService {
 
+    ScheduleDTO saveSchedule(ScheduleDTO schedule);
 
+    List<ScheduleDTO> listSchedules();
 
-    public Schedule saveParticipant(Schedule schedule) ;
-
-    public List<Schedule> listschedule() ;
-
-    public void deleteschedule(Long id) ;
+    void deleteSchedule(Long id) ;
 }

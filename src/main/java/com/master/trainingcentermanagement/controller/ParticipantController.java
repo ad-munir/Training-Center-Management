@@ -1,30 +1,35 @@
 package com.master.trainingcentermanagement.controller;
 
 
+import com.master.trainingcentermanagement.dto.ParticipantDTO;
 import com.master.trainingcentermanagement.entity.Participant;
-import com.master.trainingcentermanagement.service.ParticipantServiceImpl;
+import com.master.trainingcentermanagement.service.impl.ParticipantServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/api/v1/participant")
+
 public class ParticipantController {
+
     @Autowired
     ParticipantServiceImpl participantService;
-    @PostMapping("/addParticipant")
-    public Participant addFeedback(@RequestBody Participant participant){
+
+    @PostMapping
+    public ParticipantDTO saveParticipant(@RequestBody ParticipantDTO participant){
         return participantService.saveParticipant(participant);
 
     }
 
-    @GetMapping("/findParticipant")
-    public List<Participant> findFeedback(){
+    @GetMapping
+    public List<ParticipantDTO> listParticipants(){
 
-        return participantService.listParticipant();
+        return participantService.listParticipants();
     }
 
-    @DeleteMapping("deleteParticipant/{id}")
+    @DeleteMapping("/{id}")
     public void  deleteParticipant(@PathVariable Long id){
         participantService.deleteParticipant(id);
     }

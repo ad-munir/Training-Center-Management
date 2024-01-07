@@ -1,7 +1,7 @@
 package com.master.trainingcentermanagement.controller;
 
 import com.master.trainingcentermanagement.dto.CourseDTO;
-import com.master.trainingcentermanagement.service.CourceServiceImpl;
+import com.master.trainingcentermanagement.service.impl.CourseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,7 +12,7 @@ import java.util.List;
 public class CourseController {
 
     @Autowired
-    CourceServiceImpl courceService;
+    CourseServiceImpl courceService;
 
     @PostMapping
     public CourseDTO addCourse(@RequestBody CourseDTO course){

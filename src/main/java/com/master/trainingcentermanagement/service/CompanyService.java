@@ -8,10 +8,10 @@ import java.util.List;
 public interface CompanyService {
 
 
-    public Company saveCompany(CompanyDTO company) ;
+    CompanyDTO saveCompany(CompanyDTO company) ;
 
-    public List<CompanyDTO> listCompany() ;
+    List<CompanyDTO> listCompany() ;
 
-    public void deleteCompany(Long id) ;
+    void deleteCompany(Long id) ;
 
 }
