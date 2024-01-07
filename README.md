@@ -9,6 +9,7 @@ This repository contains the backend code for [Training Center Management App]. 
   - [Configuration](#configuration)
   - [Database Setup](#database-setup)
   - [Build and Run](#build-and-run)
+- [Database Schema](#database-schema)
 - [API Documentation](#api-documentation)
 - [Contributing](#contributing)
 - [Contributors](#contributors)
@@ -80,6 +81,12 @@ Build and run the application using Maven:
 ./mvnw clean install
 ./mvnw spring-boot:run
 ```
+
+## Database Schema
+
+![Database Schema](src/main/resources/static/training_center.png)
+
+This image provides a visual representation of the database schema used in the Training Center Management App.
 
 
 ## API Documentation
