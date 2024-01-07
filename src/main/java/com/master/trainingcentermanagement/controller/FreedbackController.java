@@ -1,8 +1,8 @@
-package com.master.trainingcentermanagement.controllerss;
+package com.master.trainingcentermanagement.controller;
 
 
-import com.master.trainingcentermanagement.entities.Feedback;
-import com.master.trainingcentermanagement.services.FeedbackServiceImpl;
+import com.master.trainingcentermanagement.entity.Feedback;
+import com.master.trainingcentermanagement.service.FeedbackServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

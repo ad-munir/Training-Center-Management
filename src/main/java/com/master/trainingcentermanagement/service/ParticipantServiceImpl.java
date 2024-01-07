@@ -1,7 +1,7 @@
-package com.master.trainingcentermanagement.services;
+package com.master.trainingcentermanagement.service;
 
-import com.master.trainingcentermanagement.Repositories.ParticipantRepo;
-import com.master.trainingcentermanagement.entities.Participant;
+import com.master.trainingcentermanagement.Repository.ParticipantRepo;
+import com.master.trainingcentermanagement.entity.Participant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

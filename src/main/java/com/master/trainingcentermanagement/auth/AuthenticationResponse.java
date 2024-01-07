@@ -18,6 +18,6 @@ public class AuthenticationResponse {
     String email;
     String phone;
     Role role;
-    List<String> keywords;
+    String keywords;
     String token;
 }

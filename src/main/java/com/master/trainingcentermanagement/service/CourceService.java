@@ -1,8 +1,8 @@
-package com.master.trainingcentermanagement.services;
+package com.master.trainingcentermanagement.service;
 
 
 import com.master.trainingcentermanagement.dto.CourseDTO;
-import com.master.trainingcentermanagement.entities.Course;
+import com.master.trainingcentermanagement.entity.Course;
 
 
 import java.util.List;

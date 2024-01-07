@@ -1,8 +1,8 @@
-package com.master.trainingcentermanagement.controllerss;
+package com.master.trainingcentermanagement.controller;
 
 
-import com.master.trainingcentermanagement.entities.Participant;
-import com.master.trainingcentermanagement.services.ParticipantServiceImpl;
+import com.master.trainingcentermanagement.entity.Participant;
+import com.master.trainingcentermanagement.service.ParticipantServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

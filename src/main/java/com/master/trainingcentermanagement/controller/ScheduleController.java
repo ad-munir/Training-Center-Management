@@ -1,7 +1,7 @@
-package com.master.trainingcentermanagement.controllerss;
+package com.master.trainingcentermanagement.controller;
 
-import com.master.trainingcentermanagement.entities.Schedule;
-import com.master.trainingcentermanagement.services.ScheduleServiceImpl;
+import com.master.trainingcentermanagement.entity.Schedule;
+import com.master.trainingcentermanagement.service.ScheduleServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

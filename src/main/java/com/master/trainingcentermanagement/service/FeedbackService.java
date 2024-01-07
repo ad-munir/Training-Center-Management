@@ -1,6 +1,6 @@
-package com.master.trainingcentermanagement.services;
+package com.master.trainingcentermanagement.service;
 
-import com.master.trainingcentermanagement.entities.Feedback;
+import com.master.trainingcentermanagement.entity.Feedback;
 
 import java.util.List;
 

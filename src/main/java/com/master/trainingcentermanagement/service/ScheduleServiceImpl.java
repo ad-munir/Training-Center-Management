@@ -1,9 +1,9 @@
-package com.master.trainingcentermanagement.services;
+package com.master.trainingcentermanagement.service;
 
 
-import com.master.trainingcentermanagement.Repositories.ScheduleRepo;
+import com.master.trainingcentermanagement.Repository.ScheduleRepo;
 
-import com.master.trainingcentermanagement.entities.Schedule;
+import com.master.trainingcentermanagement.entity.Schedule;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

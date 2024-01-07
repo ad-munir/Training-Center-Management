@@ -1,7 +1,7 @@
-package com.master.trainingcentermanagement.services;
+package com.master.trainingcentermanagement.service;
 
 import com.master.trainingcentermanagement.dto.CompanyDTO;
-import com.master.trainingcentermanagement.entities.Company;
+import com.master.trainingcentermanagement.entity.Company;
 
 
 import java.util.List;

@@ -1,6 +1,6 @@
-package com.master.trainingcentermanagement.Repositories;
+package com.master.trainingcentermanagement.Repository;
 
-import com.master.trainingcentermanagement.entities.Course;
+import com.master.trainingcentermanagement.entity.Course;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CourseRepo extends JpaRepository<Course,Long> {

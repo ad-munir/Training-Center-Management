@@ -1,8 +1,8 @@
-package com.master.trainingcentermanagement.controllerss;
+package com.master.trainingcentermanagement.controller;
 
 import com.master.trainingcentermanagement.dto.CompanyDTO;
-import com.master.trainingcentermanagement.entities.Company;
-import com.master.trainingcentermanagement.services.CompanyServiceImpl;
+import com.master.trainingcentermanagement.entity.Company;
+import com.master.trainingcentermanagement.service.CompanyServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.*;

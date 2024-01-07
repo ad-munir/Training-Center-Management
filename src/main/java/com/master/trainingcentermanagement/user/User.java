@@ -1,6 +1,6 @@
 package com.master.trainingcentermanagement.user;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.master.trainingcentermanagement.entity.Course;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,6 +10,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -31,16 +32,21 @@ public class User implements UserDetails {
     private String email;
     private String password;
 
-    @ElementCollection
-    @CollectionTable(name = "user_keywords", joinColumns = @JoinColumn(name = "user_id"))
-    @Column(name = "keyword")
-    private List<String> keywords;
-    private boolean active = true;
+    private  String keywords;
 
+    private boolean active = true;
 
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @OneToMany(mappedBy = "trainer")
+    List<Course> courses;
+
+
+    public static List<String> getKeywords(String keywords){
+        return Arrays.asList(keywords.split(","));
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
