@@ -1,13 +1,11 @@
 package com.master.trainingcentermanagement.service.impl;
 
 
-import com.master.trainingcentermanagement.Repository.ScheduleRepo;
+import com.master.trainingcentermanagement.repository.ScheduleRepo;
 
-import com.master.trainingcentermanagement.dto.ParticipantDTO;
-import com.master.trainingcentermanagement.dto.ScheduleDTO;
+import com.master.trainingcentermanagement.dto.ScheduleDto;
 import com.master.trainingcentermanagement.entity.Schedule;
 import com.master.trainingcentermanagement.service.ScheduleService;
-import org.hibernate.Hibernate;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,20 +24,20 @@ public class ScheduleServiceImpl implements ScheduleService {
     private ModelMapper modelMapper;
 
     @Override
-    public ScheduleDTO saveSchedule(ScheduleDTO schedule) {
+    public ScheduleDto saveSchedule(ScheduleDto schedule) {
 
         Schedule sch = modelMapper.map(schedule, Schedule.class);
         sch = scheduleRepo.save(sch);
 
 
-        return modelMapper.map(sch, ScheduleDTO.class);
+        return modelMapper.map(sch, ScheduleDto.class);
     }
 
     @Override
-    public List<ScheduleDTO> listSchedules() {
+    public List<ScheduleDto> listSchedules() {
         return scheduleRepo.findAll()
                 .stream()
-                .map(e -> modelMapper.map(e, ScheduleDTO.class))
+                .map(e -> modelMapper.map(e, ScheduleDto.class))
                 .collect(Collectors.toList());
     }
 

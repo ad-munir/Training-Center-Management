@@ -1,7 +1,6 @@
 package com.master.trainingcentermanagement.service;
 
-import com.master.trainingcentermanagement.dto.FeedbackDTO;
-import com.master.trainingcentermanagement.entity.Feedback;
+import com.master.trainingcentermanagement.dto.FeedbackDto;
 
 import java.util.List;
 
@@ -9,9 +8,9 @@ import java.util.List;
 public interface FeedbackService {
 
 
-    FeedbackDTO saveFeedback(FeedbackDTO feedback) ;
+    FeedbackDto saveFeedback(FeedbackDto feedback) ;
 
-    List<FeedbackDTO> listFeedbacks();
+    List<FeedbackDto> listFeedbacks();
 
     void deletefeedback(Long id) ;
 }

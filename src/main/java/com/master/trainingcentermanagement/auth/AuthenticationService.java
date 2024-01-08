@@ -3,7 +3,7 @@ package com.master.trainingcentermanagement.auth;
 import com.master.trainingcentermanagement.config.JwtService;
 import com.master.trainingcentermanagement.exception.errors.AppException;
 import com.master.trainingcentermanagement.user.User;
-import com.master.trainingcentermanagement.user.UserRepository;
+import com.master.trainingcentermanagement.user.UserRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -17,7 +17,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class AuthenticationService {
 
-    private final UserRepository repository;
+    private final UserRepo repository;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
     private final PasswordEncoder passwordEncoder;

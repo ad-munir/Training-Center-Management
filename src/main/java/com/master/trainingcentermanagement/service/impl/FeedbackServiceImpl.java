@@ -1,12 +1,9 @@
 package com.master.trainingcentermanagement.service.impl;
 
-import com.master.trainingcentermanagement.Repository.FeedbackRepo;
-import com.master.trainingcentermanagement.dto.CompanyDTO;
-import com.master.trainingcentermanagement.dto.FeedbackDTO;
-import com.master.trainingcentermanagement.entity.Company;
+import com.master.trainingcentermanagement.repository.FeedbackRepo;
+import com.master.trainingcentermanagement.dto.FeedbackDto;
 import com.master.trainingcentermanagement.entity.Feedback;
 import com.master.trainingcentermanagement.service.FeedbackService;
-import org.hibernate.Hibernate;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,21 +22,21 @@ public class FeedbackServiceImpl implements FeedbackService {
 
 
     @Override
-    public FeedbackDTO saveFeedback(FeedbackDTO feedback) {
+    public FeedbackDto saveFeedback(FeedbackDto feedback) {
 
         Feedback fdb = modelMapper.map(feedback, Feedback.class);
         fdb = feedbackRepo.save(fdb);
 
 
-        return modelMapper.map(fdb, FeedbackDTO.class);
+        return modelMapper.map(fdb, FeedbackDto.class);
     }
 
     @Override
-    public List<FeedbackDTO> listFeedbacks() {
+    public List<FeedbackDto> listFeedbacks() {
 
         return feedbackRepo.findAll()
                 .stream()
-                .map(e -> modelMapper.map(e,FeedbackDTO.class))
+                .map(e -> modelMapper.map(e, FeedbackDto.class))
                 .collect(Collectors.toList());
     }
 

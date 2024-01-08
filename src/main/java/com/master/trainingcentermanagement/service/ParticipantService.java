@@ -1,16 +1,15 @@
 package com.master.trainingcentermanagement.service;
 
-import com.master.trainingcentermanagement.dto.ParticipantDTO;
-import com.master.trainingcentermanagement.entity.Participant;
+import com.master.trainingcentermanagement.dto.ParticipantDto;
 
 import java.util.List;
 
 
 public interface ParticipantService {
 
-    ParticipantDTO saveParticipant(ParticipantDTO participant) ;
+    ParticipantDto saveParticipant(ParticipantDto participant) ;
 
-    List<ParticipantDTO> listParticipants() ;
+    List<ParticipantDto> listParticipants() ;
 
     void deleteParticipant(Long id) ;
 }

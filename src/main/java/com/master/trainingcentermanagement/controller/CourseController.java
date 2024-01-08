@@ -1,6 +1,6 @@
 package com.master.trainingcentermanagement.controller;
 
-import com.master.trainingcentermanagement.dto.CourseDTO;
+import com.master.trainingcentermanagement.dto.CourseDto;
 import com.master.trainingcentermanagement.service.impl.CourseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -8,20 +8,20 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/course")
+@RequestMapping("/api/v1/courses")
 public class CourseController {
 
     @Autowired
     CourseServiceImpl courceService;
 
     @PostMapping
-    public CourseDTO addCourse(@RequestBody CourseDTO course){
+    public CourseDto addCourse(@RequestBody CourseDto course){
         return courceService.saveCourse(course);
 
     }
 
     @GetMapping
-    public List<CourseDTO> findAllCourses(){
+    public List<CourseDto> findAllCourses(){
 
         return courceService.listCourses();
     }

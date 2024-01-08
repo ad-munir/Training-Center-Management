@@ -27,14 +27,6 @@ public class Participant {
     private String phone;
     private String city;
 
-//    @ManyToMany
-//    @JoinTable(
-//            name = "participant_course",
-//            joinColumns = @JoinColumn(name = "participant_id"),
-//            inverseJoinColumns = @JoinColumn(name = "course_id")
-//    )
-//    private List<Course> courses;
-
     @ManyToOne
     private Course course;
 

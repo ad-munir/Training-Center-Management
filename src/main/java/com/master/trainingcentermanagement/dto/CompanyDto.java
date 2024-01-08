@@ -10,7 +10,7 @@ import java.util.List;
 
 @Data @AllArgsConstructor @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class CompanyDTO {
+public class CompanyDto {
 
     String name ;
     String address ;

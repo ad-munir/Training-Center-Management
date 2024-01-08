@@ -1,8 +1,7 @@
 package com.master.trainingcentermanagement.controller;
 
 
-import com.master.trainingcentermanagement.dto.ParticipantDTO;
-import com.master.trainingcentermanagement.entity.Participant;
+import com.master.trainingcentermanagement.dto.ParticipantDto;
 import com.master.trainingcentermanagement.service.impl.ParticipantServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -10,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/participant")
+@RequestMapping("/api/v1/participants")
 
 public class ParticipantController {
 
@@ -18,13 +17,13 @@ public class ParticipantController {
     ParticipantServiceImpl participantService;
 
     @PostMapping
-    public ParticipantDTO saveParticipant(@RequestBody ParticipantDTO participant){
+    public ParticipantDto saveParticipant(@RequestBody ParticipantDto participant){
         return participantService.saveParticipant(participant);
 
     }
 
     @GetMapping
-    public List<ParticipantDTO> listParticipants(){
+    public List<ParticipantDto> listParticipants(){
 
         return participantService.listParticipants();
     }

@@ -1,8 +1,7 @@
 package com.master.trainingcentermanagement.controller;
 
 
-import com.master.trainingcentermanagement.dto.FeedbackDTO;
-import com.master.trainingcentermanagement.entity.Feedback;
+import com.master.trainingcentermanagement.dto.FeedbackDto;
 import com.master.trainingcentermanagement.service.impl.FeedbackServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -10,20 +9,20 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/feedback")
+@RequestMapping("/api/v1/feedbacks")
 
 public class FeedbackController {
 
     @Autowired
     FeedbackServiceImpl feedbackService;
     @PostMapping
-    public FeedbackDTO addFeedback(@RequestBody FeedbackDTO feedback){
+    public FeedbackDto addFeedback(@RequestBody FeedbackDto feedback){
         return feedbackService.saveFeedback(feedback);
 
     }
 
     @GetMapping
-    public List<FeedbackDTO> listFeedbacks(){
+    public List<FeedbackDto> listFeedbacks(){
 
         return feedbackService.listFeedbacks();
     }

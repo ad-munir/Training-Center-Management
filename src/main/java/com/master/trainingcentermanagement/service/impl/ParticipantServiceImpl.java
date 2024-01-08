@@ -1,13 +1,9 @@
 package com.master.trainingcentermanagement.service.impl;
 
-import com.master.trainingcentermanagement.Repository.ParticipantRepo;
-import com.master.trainingcentermanagement.dto.CompanyDTO;
-import com.master.trainingcentermanagement.dto.FeedbackDTO;
-import com.master.trainingcentermanagement.dto.ParticipantDTO;
-import com.master.trainingcentermanagement.entity.Company;
+import com.master.trainingcentermanagement.repository.ParticipantRepo;
+import com.master.trainingcentermanagement.dto.ParticipantDto;
 import com.master.trainingcentermanagement.entity.Participant;
 import com.master.trainingcentermanagement.service.ParticipantService;
-import org.hibernate.Hibernate;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,20 +20,20 @@ public class ParticipantServiceImpl implements ParticipantService {
     @Autowired
     private ModelMapper modelMapper;
 
-    public ParticipantDTO saveParticipant(ParticipantDTO participant) {
+    public ParticipantDto saveParticipant(ParticipantDto participant) {
 
         Participant p = modelMapper.map(participant, Participant.class);
         p = participantRepo.save(p);
 
 
-        return modelMapper.map(p, ParticipantDTO.class);
+        return modelMapper.map(p, ParticipantDto.class);
     }
 
     @Override
-    public List<ParticipantDTO> listParticipants() {
+    public List<ParticipantDto> listParticipants() {
         return participantRepo.findAll()
                 .stream()
-                .map(e -> modelMapper.map(e, ParticipantDTO.class))
+                .map(e -> modelMapper.map(e, ParticipantDto.class))
                 .collect(Collectors.toList());
     }
 

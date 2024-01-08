@@ -1,16 +1,15 @@
 package com.master.trainingcentermanagement.service;
 
-import com.master.trainingcentermanagement.dto.CompanyDTO;
-import com.master.trainingcentermanagement.entity.Company;
+import com.master.trainingcentermanagement.dto.CompanyDto;
 
 
 import java.util.List;
 public interface CompanyService {
 
 
-    CompanyDTO saveCompany(CompanyDTO company) ;
+    CompanyDto saveCompany(CompanyDto company) ;
 
-    List<CompanyDTO> listCompany() ;
+    List<CompanyDto> listCompanies() ;
 
     void deleteCompany(Long id) ;
 

@@ -1,12 +1,9 @@
 package com.master.trainingcentermanagement.service.impl;
 
-import com.master.trainingcentermanagement.Repository.CompanyRepo;
-import com.master.trainingcentermanagement.dto.CompanyDTO;
-import com.master.trainingcentermanagement.dto.CourseDTO;
+import com.master.trainingcentermanagement.repository.CompanyRepo;
+import com.master.trainingcentermanagement.dto.CompanyDto;
 import com.master.trainingcentermanagement.entity.Company;
-import com.master.trainingcentermanagement.entity.Course;
 import com.master.trainingcentermanagement.service.CompanyService;
-import org.hibernate.Hibernate;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,21 +21,21 @@ public class CompanyServiceImpl implements CompanyService {
 
 
     @Override
-    public CompanyDTO saveCompany(CompanyDTO company) {
+    public CompanyDto saveCompany(CompanyDto company) {
 
         Company comp = modelMapper.map(company, Company.class);
         comp = companyRepo.save(comp);
 
 
-        return modelMapper.map(comp, CompanyDTO.class);
+        return modelMapper.map(comp, CompanyDto.class);
     }
 
-    public List<CompanyDTO> listCompany() {
+    public List<CompanyDto> listCompanies() {
 
-        List<CompanyDTO> dtoList = new ArrayList<>();
+        List<CompanyDto> dtoList = new ArrayList<>();
 
         for (Company entity: companyRepo.findAll()) {
-            dtoList.add(modelMapper.map(entity, CompanyDTO.class));
+            dtoList.add(modelMapper.map(entity, CompanyDto.class));
         }
 
         return dtoList;
