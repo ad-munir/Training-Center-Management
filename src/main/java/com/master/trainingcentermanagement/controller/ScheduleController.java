@@ -1,5 +1,6 @@
 package com.master.trainingcentermanagement.controller;
 
+<<<<<<< HEAD
 import com.master.trainingcentermanagement.dto.ScheduleDto;
 import com.master.trainingcentermanagement.service.impl.ScheduleServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,4 +33,11 @@ public class ScheduleController {
         scheduleService.deleteSchedule(id);
     }
 
+=======
+
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class ScheduleController {
+>>>>>>> a4269e8 (commant 2 cree service)
 }

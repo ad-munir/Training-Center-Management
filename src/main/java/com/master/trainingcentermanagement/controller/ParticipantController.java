@@ -1,6 +1,7 @@
 package com.master.trainingcentermanagement.controller;
 
 
+<<<<<<< HEAD
 import com.master.trainingcentermanagement.dto.ParticipantDto;
 import com.master.trainingcentermanagement.service.impl.ParticipantServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,4 +33,10 @@ public class ParticipantController {
     public void  deleteParticipant(@PathVariable Long id){
         participantService.deleteParticipant(id);
     }
+=======
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class ParticipantController {
+>>>>>>> a4269e8 (commant 2 cree service)
 }

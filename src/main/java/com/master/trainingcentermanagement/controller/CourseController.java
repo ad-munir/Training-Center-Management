@@ -1,5 +1,6 @@
 package com.master.trainingcentermanagement.controller;
 
+<<<<<<< HEAD
 import com.master.trainingcentermanagement.dto.CourseDto;
 import com.master.trainingcentermanagement.service.impl.CourseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/courses")
+=======
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+>>>>>>> a4269e8 (commant 2 cree service)
 public class CourseController {
 
     @Autowired
