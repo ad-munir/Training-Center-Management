@@ -24,11 +24,12 @@ public class TrainerServiceImpl implements TrainerService {
     public List<TrainerDto> listTrainers() {
 
         List<TrainerDto> dtoList = new ArrayList<>();
-
+        System.out.println("a");
         for (User entity: userRepo.findAll()) {
-            if (entity.getRole() == Role.TRAINER)
+//            if (entity.getRole() == Role.TRAINER)
                 dtoList.add(modelMapper.map(entity, TrainerDto.class));
         }
+        System.out.println("b");
 
         return dtoList;
     }

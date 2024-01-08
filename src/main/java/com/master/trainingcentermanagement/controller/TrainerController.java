@@ -14,18 +14,18 @@ import java.util.List;
 public class TrainerController {
 
     @Autowired
-    TrainerServiceImpl userService;
+    TrainerServiceImpl trainerService;
 
 
     @GetMapping
     public List<TrainerDto> listTrainers(){
 
-        return userService.listTrainers();
+        return trainerService.listTrainers();
     }
 
     @DeleteMapping("/{id}")
     public void  deleteTrainer(@PathVariable Long id){
-        userService.deleteTrainer(id);
+        trainerService.deleteTrainer(id);
     }
 
 

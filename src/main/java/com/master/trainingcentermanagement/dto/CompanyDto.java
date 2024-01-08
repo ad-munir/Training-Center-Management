@@ -17,5 +17,5 @@ public class CompanyDto {
     String email ;
     String phone ;
     String url ;
-    private List<Long> courseIds;
+    private List<Long> courseId;
 }
