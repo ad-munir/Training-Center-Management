@@ -19,5 +19,6 @@ public class AuthenticationResponse {
     String phone;
     Role role;
     String keywords;
+    String image ;
     String token;
 }

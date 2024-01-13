@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -40,7 +41,7 @@ public class RegisterRequest {
     private String password;
 
     String keywords;
-
+    MultipartFile image ;
 //    @NotNull(message = "Role is required")
     private Role role = Role.TRAINER; //if role is not provided, the new user takes the role of TRAINER
 }

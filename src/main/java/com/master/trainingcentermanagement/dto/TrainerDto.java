@@ -2,7 +2,6 @@ package com.master.trainingcentermanagement.dto;
 
 import com.master.trainingcentermanagement.user.Role;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -15,6 +14,10 @@ public class TrainerDto {
     String lastname;
     String email;
     String phone;
-    Role role;
     String keywords;
+    Object image;
+    Role role;
+
+
+
 }

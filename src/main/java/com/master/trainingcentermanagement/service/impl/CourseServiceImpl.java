@@ -20,18 +20,17 @@ import java.util.List;
 public class CourseServiceImpl implements CourseService {
 
     private final CourseRepo courseRepo;
-    private final UserRepo userRepo;
     private final ModelMapper modelMapper;
 
 
 
     @Override
-    public CourseDto saveCourse(CourseDto course) {
+    public Long saveCourse(CourseDto course) {
 
         Course crs = modelMapper.map(course, Course.class);
         crs = courseRepo.save(crs);
 
-        return modelMapper.map(crs, CourseDto.class);
+        return crs.getId() ; //modelMapper.map(crs, CourseDto.class);
     }
 
     @Override

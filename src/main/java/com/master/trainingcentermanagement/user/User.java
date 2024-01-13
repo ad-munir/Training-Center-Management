@@ -30,10 +30,9 @@ public class User implements UserDetails {
     private String lastname;
     private String phone;
     private String email;
-    private String password;
-
+    private String password ;
     private  String keywords;
-
+    private String image ;
     private boolean active = true;
 
 
