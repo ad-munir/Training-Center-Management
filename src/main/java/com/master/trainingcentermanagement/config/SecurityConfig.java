@@ -40,6 +40,7 @@ public class SecurityConfig {
                     "/swagger-ui.html"
 
             ).permitAll()
+            .requestMatchers("/api/v1/**").authenticated() // Requires authentication for /api/v1/**
             .anyRequest().authenticated()
             .and()
             .sessionManagement()

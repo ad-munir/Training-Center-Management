@@ -1,7 +1,6 @@
 package com.master.trainingcentermanagement.dto;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -18,6 +17,5 @@ public class ParticipantDto {
     private String email;
     private String phone;
     private String city;
-
     private Long course_id;
 }

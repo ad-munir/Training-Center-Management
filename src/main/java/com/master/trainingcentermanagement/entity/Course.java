@@ -30,6 +30,7 @@ public class Course {
     private String description;
     private String type;
     private String category;
+    private String image ;
 
     @ManyToOne
     private User trainer;
@@ -54,6 +55,7 @@ public class Course {
 
     @OneToMany(mappedBy = "course")
     private List<Schedule> schedules;
+
 
 
 

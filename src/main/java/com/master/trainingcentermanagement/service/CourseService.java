@@ -9,7 +9,7 @@ import java.util.List;
 public interface CourseService {
 
 
-    CourseDto saveCourse(CourseDto course);
+    Long saveCourse(CourseDto course);
 
     List<CourseDto> listCourses() ;
 
