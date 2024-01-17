@@ -23,11 +23,14 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http
+                .cors() // Enable CORS
+                .and()
             .csrf()
             .disable()
             .authorizeHttpRequests()
             .requestMatchers(
                     "/api/v1/auth/**",
+//                    "/api/v1/**",
                     "/v2/api-docs",
                     "/v3/api-docs",
                     "/v3/api-docs/**",
