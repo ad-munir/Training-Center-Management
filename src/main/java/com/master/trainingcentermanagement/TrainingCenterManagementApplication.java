@@ -1,12 +1,14 @@
 package com.master.trainingcentermanagement;
 
+import com.master.trainingcentermanagement.user.User;
 import org.modelmapper.ModelMapper;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
-public class TrainingCenterManagementApplication {
+public class TrainingCenterManagementApplication  {
 
 	public static void main(String[] args) {
 		SpringApplication.run(TrainingCenterManagementApplication.class, args);
@@ -16,4 +18,6 @@ public class TrainingCenterManagementApplication {
 	public ModelMapper modelMapper(){
 		return new ModelMapper();
 	}
+
+
 }
