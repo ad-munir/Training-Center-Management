@@ -17,5 +17,5 @@ public class ParticipantDto {
     private String email;
     private String phone;
     private String city;
-    private Long course_id;
+    private Long courseId;
 }

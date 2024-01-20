@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/api/v1/courses")
+@CrossOrigin("http://localhost:4200")
 public class CourseController {
     private final ModelMapper modelMapper;
 
@@ -39,22 +40,20 @@ public class CourseController {
             @RequestParam String title,
             @RequestParam String hours,
             @RequestParam float cost,
-            @RequestParam String ville,
-            @RequestParam boolean online,
             @RequestParam String description,
             @RequestParam String type,
             @RequestParam String category,
             @RequestParam MultipartFile image,
-            @RequestParam Long trainer_id
+            @RequestParam Long trainerId
     ) throws IllegalStateException, IOException {
         String pathPhoto = "src/main/resources/static/photos/course/";
-        CourseDto c = new CourseDto(title,hours,cost,ville,online,description,type,category,image,trainer_id);
+        CourseDto c = new CourseDto(title,hours,cost,description,type,category,image,trainerId);
         Long id = courseService.saveCourse(c) ;
         Course course = courseRepo.findById(id)
                 .orElseThrow(()->new AppException("id course not found!", HttpStatus.NOT_FOUND));
         pathPhoto+=course.getId();
         image.transferTo(Path.of(pathPhoto));
-        String urlPhoto="http://localhost:8080/photos/course/"+course.getId();
+        String urlPhoto="http://localhost:8080/api/v1/courses/photos/course/"+course.getId();
         course.setImage(urlPhoto);
         course = courseRepo.save(course) ;
 

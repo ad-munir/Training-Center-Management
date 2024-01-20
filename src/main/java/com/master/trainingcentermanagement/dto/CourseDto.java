@@ -12,8 +12,6 @@ public class CourseDto {
     private String title;
     private String hours;
     private float cost;
-    private String ville;
-    private boolean online;
     private String description;
     private String type;
     private String category;
