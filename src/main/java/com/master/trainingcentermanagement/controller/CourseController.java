@@ -1,14 +1,15 @@
 package com.master.trainingcentermanagement.controller;
 
 import com.master.trainingcentermanagement.dto.CourseDto;
+import com.master.trainingcentermanagement.dto.TrainerDto;
 import com.master.trainingcentermanagement.entity.Course;
-import com.master.trainingcentermanagement.exception.errors.AppException;
 import com.master.trainingcentermanagement.repository.CourseRepo;
 import com.master.trainingcentermanagement.service.impl.CourseServiceImpl;
+import com.master.trainingcentermanagement.user.User;
+import com.master.trainingcentermanagement.user.UserRepo;
+import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.Resource;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.MediaType;
@@ -21,18 +22,15 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 @RequestMapping("/api/v1/courses")
 @CrossOrigin("http://localhost:4200")
+@RequiredArgsConstructor
+
 public class CourseController {
+
     private final ModelMapper modelMapper;
+    private final CourseServiceImpl courseService;
+    private final CourseRepo courseRepo;
+    private final UserRepo userRepo;
 
-    @Autowired
-    CourseServiceImpl courseService;
-
-    @Autowired
-    CourseRepo courseRepo ;
-
-    public CourseController(ModelMapper modelMapper) {
-        this.modelMapper = modelMapper;
-    }
 
 
     @PostMapping
@@ -47,15 +45,27 @@ public class CourseController {
             @RequestParam Long trainerId
     ) throws IllegalStateException, IOException {
         String pathPhoto = "src/main/resources/static/photos/course/";
-        CourseDto c = new CourseDto(title,hours,cost,description,type,category,image,trainerId);
-        Long id = courseService.saveCourse(c) ;
-        Course course = courseRepo.findById(id)
-                .orElseThrow(()->new AppException("id course not found!", HttpStatus.NOT_FOUND));
+        User trainer = userRepo.findById(trainerId).get() ;
+        Course c = Course.builder()
+                        .title(title)
+                        .hours(hours)
+                        .cost(cost)
+                        .description(description)
+                        .type(type)
+                        .category(category)
+                        .image(null)
+                        .trainer(trainer)
+                        .build();
+
+        Course course = courseRepo.save(c) ;
+
         pathPhoto+=course.getId();
         image.transferTo(Path.of(pathPhoto));
         String urlPhoto="http://localhost:8080/api/v1/courses/photos/course/"+course.getId();
+
+
         course.setImage(urlPhoto);
-        course = courseRepo.save(course) ;
+        course = courseRepo.save(course);
 
         return modelMapper.map(course, CourseDto.class);
 

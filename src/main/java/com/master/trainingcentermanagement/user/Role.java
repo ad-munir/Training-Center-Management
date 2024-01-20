@@ -1,7 +1,7 @@
 package com.master.trainingcentermanagement.user;
 
 public enum Role {
-    ROLE_ADMIN,
+    ADMIN,
     ASSISTANT,
     TRAINER
 }

@@ -1,6 +1,8 @@
 package com.master.trainingcentermanagement.controller;
 
+import com.master.trainingcentermanagement.dto.CourseDto;
 import com.master.trainingcentermanagement.dto.TrainerDto;
+import com.master.trainingcentermanagement.entity.Course;
 import com.master.trainingcentermanagement.exception.errors.AppException;
 import com.master.trainingcentermanagement.service.impl.TrainerServiceImpl;
 import com.master.trainingcentermanagement.user.Role;
@@ -51,27 +53,40 @@ public class TrainerController {
     }
 
     @PostMapping
-    public TrainerDto addCourse(
+    public TrainerDto addTrainer(
             @RequestParam  String firstname,
             @RequestParam String lastname,
             @RequestParam String email,
             @RequestParam String phone,
             @RequestParam String keywords,
-            @RequestParam MultipartFile image,
-            @RequestParam Role role
+            @RequestParam String password,
+            @RequestParam MultipartFile image
     ) throws IllegalStateException, IOException {
         String pathPhoto = "src/main/resources/static/photos/trainer/";
-        TrainerDto trn = new TrainerDto(firstname,lastname,email,phone,keywords,image,role);
-        Long id = trainerService.saveTrainer(trn) ;
-        User trainer = userRepo.findById(id)
-                .orElseThrow(()->new AppException("id trainer not found!", HttpStatus.NOT_FOUND));
-        pathPhoto+=trainer.getId();
+
+
+        User trainer = User.builder()
+                .firstname(firstname)
+                .lastname(lastname)
+                .email(email)
+                .phone(phone)
+                .keywords(keywords)
+                .password(password)
+                .image(null)
+                .role(Role.TRAINER)
+                .active(true)
+                .build();
+
+        trainer = userRepo.save(trainer);
+
+        pathPhoto += trainer.getId();
         image.transferTo(Path.of(pathPhoto));
         String urlPhoto="http://localhost:8080/api/v1/trainers/photos/trainer/"+trainer.getId();
+
         trainer.setImage(urlPhoto);
         trainer = userRepo.save(trainer) ;
-        return modelMapper.map(trainer , TrainerDto.class);
 
+        return modelMapper.map(trainer , TrainerDto.class);
     }
 
     @GetMapping(path = "/photos/trainer/{id}")

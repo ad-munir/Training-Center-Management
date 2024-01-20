@@ -40,7 +40,7 @@ public class AuthenticationService {
                 .role(request.getRole())
                 .keywords(request.getKeywords())
                 .active(true)
-                .image(request.getImage().toString())
+            //    .image(request.getImage().toString())
 //                .role(Role.TRAINER)
                 .build();
 

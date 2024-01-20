@@ -39,8 +39,10 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @OneToMany(mappedBy = "trainer")
-    List<Course> courses;
+    @ManyToOne
+    @JoinColumn(name = "trainer_id")
+    private User trainer;
+
 
 
     public static List<String> getKeywords(String keywords){
