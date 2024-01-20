@@ -40,8 +40,8 @@ public class RegisterRequest {
     @Size(max = 20, message = "Password must not exceed 20 characters")
     private String password;
 
-    String keywords;
-    MultipartFile image ;
+    String keywords = null;
+    MultipartFile image = null ;
 //    @NotNull(message = "Role is required")
     private Role role = Role.TRAINER; //if role is not provided, the new user takes the role of TRAINER
 }

@@ -1,5 +1,6 @@
 package com.master.trainingcentermanagement.dto;
 
+import com.master.trainingcentermanagement.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,7 +17,8 @@ public class CourseDto {
     private String type;
     private String category;
     Object image ;
-    private Long trainerId;
+    private User trainer;
+
 
 
 
