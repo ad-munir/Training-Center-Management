@@ -8,12 +8,12 @@ import java.util.ArrayList;
 
 import com.master.trainingcentermanagement.entity.Course;
 import com.master.trainingcentermanagement.service.CourseService;
-import com.master.trainingcentermanagement.user.UserRepo;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -48,4 +48,17 @@ public class CourseServiceImpl implements CourseService {
     public void deleteCourse(Long id) {
         courseRepo.deleteById(id);
     }
+
+    @Override
+    public CourseDto getCourseById(Long id) {
+        Optional<Course> courseOptional = courseRepo.findById(id);
+
+        if (courseOptional.isPresent()) {
+            CourseDto courseDto = modelMapper.map(courseOptional.get(), CourseDto.class);
+            return courseDto;
+        } else {
+            return null;
+        }
+    }
+
 }

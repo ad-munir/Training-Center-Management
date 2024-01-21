@@ -25,7 +25,6 @@ public class Feedback {
     private List<String> comments ;
 
     @ManyToOne
-//    @JoinColumn(name = "course_id")
     private Course course;
 
 

@@ -45,7 +45,7 @@ public class CourseController {
             @RequestParam Long trainerId
     ) throws IllegalStateException, IOException {
         String pathPhoto = "src/main/resources/static/photos/course/";
-        User trainer = userRepo.findById(trainerId).get() ;
+//        User trainer = userRepo.findById(trainerId).get() ;
         Course c = Course.builder()
                         .title(title)
                         .hours(hours)
@@ -54,7 +54,7 @@ public class CourseController {
                         .type(type)
                         .category(category)
                         .image(null)
-                        .trainer(trainer)
+                        .trainer(userRepo.findById(trainerId).get())
                         .build();
 
         Course course = courseRepo.save(c) ;
@@ -75,6 +75,13 @@ public class CourseController {
 
         return courseService.listCourses();
     }
+    @GetMapping("/{id}")
+    public CourseDto getCourseById(@PathVariable Long id) {
+        CourseDto courseDto = courseService.getCourseById(id);
+        return courseDto;
+    }
+
+
 
     @DeleteMapping("/{id}")
     public void  deleteCompany(@PathVariable Long id){

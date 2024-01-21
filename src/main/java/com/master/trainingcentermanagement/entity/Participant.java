@@ -22,7 +22,7 @@ public class Participant {
     private Long id;
     private String firstname;
     private String lastname;
-    private LocalDate birthday;
+    private String birthday;
     private String email;
     private String phone;
     private String city;

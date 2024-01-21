@@ -41,10 +41,11 @@ public class SecurityConfig {
                     "/webjars/**",
                     "/api/v1/courses/photos/course/**",
                     "/api/v1/trainers/photos/trainer/**",
+                    "/api/v1/courses/**",
                     "/swagger-ui.html"
 
             ).permitAll()
-            .requestMatchers("/api/v1/**").authenticated() // Requires authentication for /api/v1/**
+            .requestMatchers("/api/v1/**").authenticated()
             .anyRequest().authenticated()
             .and()
             .sessionManagement()

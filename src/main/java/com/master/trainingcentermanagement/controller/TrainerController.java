@@ -8,6 +8,7 @@ import com.master.trainingcentermanagement.service.impl.TrainerServiceImpl;
 import com.master.trainingcentermanagement.user.Role;
 import com.master.trainingcentermanagement.user.User;
 import com.master.trainingcentermanagement.user.UserRepo;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -16,6 +17,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -27,9 +29,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/trainers")
 @CrossOrigin("http://localhost:4200")
+@RequiredArgsConstructor
 public class TrainerController {
 
     private final ModelMapper modelMapper;
+    private final PasswordEncoder passwordEncoder;
+
 
     @Autowired
     TrainerServiceImpl trainerService;
@@ -37,9 +42,6 @@ public class TrainerController {
     @Autowired
     UserRepo userRepo ;
 
-    public TrainerController(ModelMapper modelMapper) {
-        this.modelMapper = modelMapper;
-    }
 
     @GetMapping
     public List<TrainerDto> listTrainers(){
@@ -71,7 +73,7 @@ public class TrainerController {
                 .email(email)
                 .phone(phone)
                 .keywords(keywords)
-                .password(password)
+                .password(passwordEncoder.encode(password))
                 .image(null)
                 .role(Role.TRAINER)
                 .active(true)

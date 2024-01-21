@@ -1,6 +1,8 @@
 package com.master.trainingcentermanagement.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.master.trainingcentermanagement.entity.Course;
+import com.master.trainingcentermanagement.entity.Feedback;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -39,10 +41,9 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @ManyToOne
-    @JoinColumn(name = "trainer_id")
-    private User trainer;
-
+    @OneToMany(mappedBy = "trainer")
+    @JsonIgnore
+    private List<Course> courses;
 
 
     public static List<String> getKeywords(String keywords){
