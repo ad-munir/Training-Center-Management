@@ -8,6 +8,7 @@ import com.master.trainingcentermanagement.service.impl.TrainerServiceImpl;
 import com.master.trainingcentermanagement.user.Role;
 import com.master.trainingcentermanagement.user.User;
 import com.master.trainingcentermanagement.user.UserRepo;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -27,23 +28,20 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/trainers")
 @CrossOrigin("http://localhost:4200")
+@RequiredArgsConstructor
 public class TrainerController {
 
     private final ModelMapper modelMapper;
+    private final TrainerServiceImpl trainerService;
+    private final UserRepo userRepo ;
 
-    @Autowired
-    TrainerServiceImpl trainerService;
-
-    @Autowired
-    UserRepo userRepo ;
-
-    public TrainerController(ModelMapper modelMapper) {
-        this.modelMapper = modelMapper;
+    @GetMapping("/{id}")
+    public TrainerDto getTrainerById(@PathVariable Long id) {
+        return trainerService.getTrainerById(id);
     }
 
     @GetMapping
     public List<TrainerDto> listTrainers(){
-
         return trainerService.listTrainers();
     }
 

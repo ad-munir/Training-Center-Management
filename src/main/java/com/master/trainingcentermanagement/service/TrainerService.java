@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface TrainerService {
 
+    TrainerDto getTrainerById(Long id);
+
     Long saveTrainer(TrainerDto trainer);
 
     List<TrainerDto> listTrainers();

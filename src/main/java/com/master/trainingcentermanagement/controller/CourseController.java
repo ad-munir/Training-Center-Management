@@ -1,16 +1,15 @@
 package com.master.trainingcentermanagement.controller;
 
 import com.master.trainingcentermanagement.dto.CourseDto;
+import com.master.trainingcentermanagement.dto.TrainerDto;
 import com.master.trainingcentermanagement.entity.Course;
-import com.master.trainingcentermanagement.exception.errors.AppException;
 import com.master.trainingcentermanagement.repository.CourseRepo;
 import com.master.trainingcentermanagement.service.impl.CourseServiceImpl;
+import com.master.trainingcentermanagement.user.User;
 import com.master.trainingcentermanagement.user.UserRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.Resource;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.MediaType;
@@ -46,6 +45,7 @@ public class CourseController {
             @RequestParam Long trainerId
     ) throws IllegalStateException, IOException {
         String pathPhoto = "src/main/resources/static/photos/course/";
+        User trainer = userRepo.findById(trainerId).get() ;
         Course c = Course.builder()
                         .title(title)
                         .hours(hours)
@@ -54,7 +54,7 @@ public class CourseController {
                         .type(type)
                         .category(category)
                         .image(null)
-//                        .trainer(userRepo.findById(trainerId).get())
+                        .trainer(trainer)
                         .build();
 
         Course course = courseRepo.save(c) ;

@@ -1,5 +1,6 @@
 package com.master.trainingcentermanagement.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.master.trainingcentermanagement.entity.Course;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -40,7 +41,9 @@ public class User implements UserDetails {
     private Role role;
 
     @OneToMany(mappedBy = "trainer")
-    List<Course> courses;
+    @JsonIgnore
+    private List<Course> courses;
+
 
 
     public static List<String> getKeywords(String keywords){

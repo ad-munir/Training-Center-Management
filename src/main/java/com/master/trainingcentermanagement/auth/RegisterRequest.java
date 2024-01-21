@@ -41,7 +41,7 @@ public class RegisterRequest {
     private String password;
 
     String keywords = null;
-    MultipartFile image = null ;
+    //MultipartFile image = null ;
 //    @NotNull(message = "Role is required")
     private Role role = Role.TRAINER; //if role is not provided, the new user takes the role of TRAINER
 }
