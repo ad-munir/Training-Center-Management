@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ParticipantDto {
-
+    private Long id ;
     private String firstname;
     private String lastname;
     private LocalDate birthday;

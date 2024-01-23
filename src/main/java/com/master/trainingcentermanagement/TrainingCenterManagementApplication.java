@@ -1,5 +1,6 @@
 package com.master.trainingcentermanagement;
 
+import com.master.trainingcentermanagement.service.impl.MailSenderServiceImp;
 import com.master.trainingcentermanagement.user.Role;
 import com.master.trainingcentermanagement.user.User;
 import com.master.trainingcentermanagement.user.UserRepo;
@@ -17,6 +18,7 @@ public class TrainingCenterManagementApplication implements CommandLineRunner {
 
 	private final UserRepo userRepo;
 	private final PasswordEncoder passwordEncoder;
+	private final MailSenderServiceImp mailService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(TrainingCenterManagementApplication.class, args);
@@ -33,12 +35,12 @@ public class TrainingCenterManagementApplication implements CommandLineRunner {
 		if (userRepo.count() == 0){
 
 			User user = User.builder()
-					.firstname("mounir")
-					.lastname("ayad")
-					.email("mounir@admin.com")
-					.phone("0682439559")
+					.firstname("Abdeljebar")
+					.lastname("HINDA")
+					.email("hindaabdjbbar@gmail.com")
+					.phone("0675410450")
 					.role(Role.ADMIN)
-					.password(passwordEncoder.encode("00000000"))
+					.password(passwordEncoder.encode("Abdo@2000"))
 					.active(true)
 					.build();
 
@@ -47,7 +49,6 @@ public class TrainingCenterManagementApplication implements CommandLineRunner {
 		}else {
 			System.out.println("ADMIN is already exists");
 		}
-
 
 	}
 }

@@ -1,7 +1,7 @@
 package com.master.trainingcentermanagement.entity;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.*;
 import com.master.trainingcentermanagement.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data

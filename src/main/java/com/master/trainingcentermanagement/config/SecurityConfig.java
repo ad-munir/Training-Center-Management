@@ -41,6 +41,8 @@ public class SecurityConfig {
                     "/webjars/**",
                     "/api/v1/courses/photos/course/**",
                     "/api/v1/trainers/photos/trainer/**",
+                    "/api/v1/assistants/photos/assistant/**",
+
 //                    "/api/v1/courses/{id}",
                     "/api/v1/courses/**",
                     "/swagger-ui.html"

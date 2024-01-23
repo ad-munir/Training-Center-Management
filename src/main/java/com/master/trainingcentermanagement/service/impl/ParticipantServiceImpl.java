@@ -24,43 +24,15 @@ public class ParticipantServiceImpl implements ParticipantService {
     private final CourseRepo courseRepo;
     private final ModelMapper modelMapper;
 
-    public ParticipantDto saveParticipant(ParticipantDto participant) {
+    public ParticipantDto saveParticipant(ParticipantDto participantDto) {
 
-        Course course = courseRepo.findById(participant.getCourseId()).orElseThrow(()-> new AppException("Course not found!", HttpStatus.NOT_FOUND));
-
-        Participant p = modelMapper.map(participant, Participant.class);
-        p.setCourse(course);
-        p = participantRepo.save(p);
+        Participant participant = modelMapper.map(participantDto, Participant.class);
+        participant = participantRepo.save(participant);
 
 
-        return modelMapper.map(p, ParticipantDto.class);
+        return modelMapper.map(participant, ParticipantDto.class);
 
 
-
-//        Course course = courseRepo.findById(participant.getCourseId()).orElseThrow(()-> new AppException("Course not found!", HttpStatus.NOT_FOUND));
-//
-//
-//        Participant p = Participant.builder()
-//                .id(null)
-//                .firstname(participant.getFirstname())
-//                .lastname(participant.getLastname())
-//                .birthday(participant.getBirthday())
-//                .phone(participant.getPhone())
-//                .email(participant.getEmail())
-//                .city(participant.getCity())
-//                .course(course)
-//                .build();
-//
-//
-//        p = participantRepo.save(p);
-//
-//        System.out.println("============================1");
-//        System.out.println(p);
-//        System.out.println("============================1");
-//
-//
-//
-//        return modelMapper.map(p, ParticipantDto.class);
     }
 
     @Override

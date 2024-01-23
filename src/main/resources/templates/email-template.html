@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Email Template</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #008080;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            text-align: center;
+            text-decoration: none;
+            background-color: #4CAF50;
+            color: #fff;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+<h1>Greetings from myproject!</h1>
+<p th:text="${message}">Default message</p>
+
+<!-- Additional HTML and CSS -->
+<div>
+    <p>This is additional content in the email template.</p>
+    <p>You can customize and add more styles as needed.</p>
+</div>
+
+<!-- Example button with the 'button' class -->
+<a href="lo" class="button">Click Me</a>
+</body>
+</html>
