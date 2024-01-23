@@ -2,6 +2,7 @@ package com.master.trainingcentermanagement.auth;
 
 import com.master.trainingcentermanagement.config.JwtService;
 import com.master.trainingcentermanagement.exception.errors.AppException;
+import com.master.trainingcentermanagement.user.Role;
 import com.master.trainingcentermanagement.user.User;
 import com.master.trainingcentermanagement.user.UserRepo;
 import lombok.RequiredArgsConstructor;
@@ -37,11 +38,11 @@ public class AuthenticationService {
                 .email(request.getEmail())
                 .phone(request.getPhone())
                 .password(passwordEncoder.encode(request.getPassword()))
-                .role(request.getRole())
+                .role(Role.ADMIN)
                 .keywords(request.getKeywords())
                 .active(true)
             //    .image(request.getImage().toString())
-//                .role(Role.TRAINER)
+            //    .role(Role.TRAINER)
                 .build();
 
         repository.save(user);

@@ -33,6 +33,7 @@ public class Course {
     @ManyToOne
     private User trainer;
 
+
     @OneToMany(mappedBy = "course")
     private List<Feedback> feedbacks;
 

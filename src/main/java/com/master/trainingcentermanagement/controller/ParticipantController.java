@@ -3,23 +3,25 @@ package com.master.trainingcentermanagement.controller;
 
 import com.master.trainingcentermanagement.dto.ParticipantDto;
 import com.master.trainingcentermanagement.service.impl.ParticipantServiceImpl;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/participants")
-
+@CrossOrigin("http://localhost:4200")
+@RequiredArgsConstructor
 public class ParticipantController {
 
-    @Autowired
-    ParticipantServiceImpl participantService;
+    private final ParticipantServiceImpl participantService;
 
     @PostMapping
     public ParticipantDto saveParticipant(@RequestBody ParticipantDto participant){
         return participantService.saveParticipant(participant);
-
     }
 
     @GetMapping

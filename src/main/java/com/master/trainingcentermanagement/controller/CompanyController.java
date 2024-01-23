@@ -2,6 +2,7 @@ package com.master.trainingcentermanagement.controller;
 
 import com.master.trainingcentermanagement.dto.CompanyDto;
 import com.master.trainingcentermanagement.service.impl.CompanyServiceImpl;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.*;
@@ -11,10 +12,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/companies")
+@CrossOrigin("http://localhost:4200")
+@RequiredArgsConstructor
 public class CompanyController {
 
-    @Autowired
-    CompanyServiceImpl companyService;
+    private final CompanyServiceImpl companyService;
     @PostMapping
     public CompanyDto addCompany(@RequestBody CompanyDto company){
         return companyService.saveCompany(company);

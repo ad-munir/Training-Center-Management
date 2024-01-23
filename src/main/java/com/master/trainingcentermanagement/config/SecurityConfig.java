@@ -23,8 +23,8 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http
-                .cors()
-                .and()
+            .cors()
+            .and()
             .csrf()
             .disable()
             .authorizeHttpRequests()
@@ -39,12 +39,14 @@ public class SecurityConfig {
                     "/configuration/security",
                     "/swagger-ui/**",
                     "/webjars/**",
-                    "/api/v1/courses/photos/**",
-                    "/api/v1/trainers/photos/**",
+                    "/api/v1/courses/photos/course/**",
+                    "/api/v1/trainers/photos/trainer/**",
+//                    "/api/v1/courses/{id}",
+                    "/api/v1/courses/**",
                     "/swagger-ui.html"
 
             ).permitAll()
-            .requestMatchers("/api/v1/**").authenticated() // Requires authentication for /api/v1/**
+            .requestMatchers("/api/v1/**").authenticated()
             .anyRequest().authenticated()
             .and()
             .sessionManagement()
