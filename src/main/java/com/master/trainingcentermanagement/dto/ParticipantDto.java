@@ -11,6 +11,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class ParticipantDto {
 
+    private Long id;
     private String firstname;
     private String lastname;
     private LocalDate birthday;
