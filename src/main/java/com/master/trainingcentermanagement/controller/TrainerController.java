@@ -129,6 +129,7 @@ public class TrainerController {
         return modelMapper.map(trainer , TrainerDto.class);
     }
 
+
     @GetMapping(path = "/photos/trainer/{id}")
     public ResponseEntity<Resource> getImage(@PathVariable String id){
         String path="src/main/resources/static/photos/trainer/"+id;

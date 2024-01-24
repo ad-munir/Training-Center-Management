@@ -1,6 +1,8 @@
 package com.master.trainingcentermanagement.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,10 +21,7 @@ public class Feedback {
     private Long id;
     private int score;
 
-    @ElementCollection
-    @CollectionTable(name = "comments", joinColumns = @JoinColumn(name = "feedback_id"))
-    @Column(name = "comments")
-    private List<String> comments ;
+    private String comments ;
 
     @ManyToOne
     private Course course;
