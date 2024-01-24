@@ -12,4 +12,6 @@ public interface ParticipantService {
     List<ParticipantDto> listParticipants() ;
 
     void deleteParticipant(Long id) ;
+
+    void assignToCourse(Long id);
 }

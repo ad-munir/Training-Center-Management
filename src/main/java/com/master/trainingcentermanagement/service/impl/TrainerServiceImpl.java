@@ -54,10 +54,12 @@ public class TrainerServiceImpl implements TrainerService {
                         entity.getEmail(),
                         entity.getPhone(),
                         entity.getKeywords(),
+                        entity.isActive(),
                         entity.getImage(),
                         entity.getRole(),
                         entity.getCourses())
-                );}      //modelMapper.map(trainer, TrainerDto.class)
+                );
+        }
 
         return dtoList;
     }

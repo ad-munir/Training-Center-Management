@@ -19,6 +19,7 @@ public class TrainerDto {
     private String email;
     private String phone;
     private String keywords;
+    private boolean active;
     private Object image;
     private Role role;
     private List<Course> courses;

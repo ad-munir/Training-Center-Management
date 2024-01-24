@@ -2,9 +2,11 @@ package com.master.trainingcentermanagement.controller;
 
 
 import com.master.trainingcentermanagement.dto.ParticipantDto;
+import com.master.trainingcentermanagement.entity.Participant;
 import com.master.trainingcentermanagement.service.impl.ParticipantServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -18,6 +20,13 @@ import java.util.List;
 public class ParticipantController {
 
     private final ParticipantServiceImpl participantService;
+
+    @PostMapping("assign/{id}")
+    public ResponseEntity<String> assignToCourse(@PathVariable Long id){
+
+        participantService.assignToCourse(id);
+        return ResponseEntity.ok("Participant[id: "+ id +"] assigned to the course");
+    }
 
     @PostMapping
     public ParticipantDto saveParticipant(@RequestBody ParticipantDto participant){

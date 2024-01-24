@@ -24,54 +24,51 @@ public class ParticipantServiceImpl implements ParticipantService {
     private final CourseRepo courseRepo;
     private final ModelMapper modelMapper;
 
-    public ParticipantDto saveParticipant(ParticipantDto participant) {
+    public ParticipantDto saveParticipant(ParticipantDto participantDto) {
 
-        Course course = courseRepo.findById(participant.getCourseId()).orElseThrow(()-> new AppException("Course not found!", HttpStatus.NOT_FOUND));
+        Course course = courseRepo.findById(participantDto.getCourseId())
+                .orElseThrow(()-> new AppException("Course not found", HttpStatus.NO_CONTENT));
 
-        Participant p = modelMapper.map(participant, Participant.class);
-        p.setCourse(course);
+        Participant p = Participant.builder()
+                .firstname(participantDto.getFirstname())
+                .lastname(participantDto.getLastname())
+                .birthday(participantDto.getBirthday())
+                .email(participantDto.getEmail())
+                .phone(participantDto.getPhone())
+                .city(participantDto.getCity())
+                .course(course)
+                .build();
+
         p = participantRepo.save(p);
 
+        ParticipantDto dto = modelMapper.map(p, ParticipantDto.class);
+        dto.setCourseId(participantDto.getId());
 
-        return modelMapper.map(p, ParticipantDto.class);
-
-
-
-//        Course course = courseRepo.findById(participant.getCourseId()).orElseThrow(()-> new AppException("Course not found!", HttpStatus.NOT_FOUND));
-//
-//
-//        Participant p = Participant.builder()
-//                .id(null)
-//                .firstname(participant.getFirstname())
-//                .lastname(participant.getLastname())
-//                .birthday(participant.getBirthday())
-//                .phone(participant.getPhone())
-//                .email(participant.getEmail())
-//                .city(participant.getCity())
-//                .course(course)
-//                .build();
-//
-//
-//        p = participantRepo.save(p);
-//
-//        System.out.println("============================1");
-//        System.out.println(p);
-//        System.out.println("============================1");
-//
-//
-//
-//        return modelMapper.map(p, ParticipantDto.class);
+        return dto;
     }
 
     @Override
     public List<ParticipantDto> listParticipants() {
         return participantRepo.findAll()
                 .stream()
-                .map(e -> modelMapper.map(e, ParticipantDto.class))
+                .map(e -> {
+                    ParticipantDto dto = modelMapper.map(e, ParticipantDto.class);
+                    dto.setCourseId(e.getCourse().getId());
+                    return dto;
+                })
                 .collect(Collectors.toList());
     }
 
     public void deleteParticipant(Long id) {
         participantRepo.deleteById(id);
     }
+
+    @Override
+    public void assignToCourse(Long id) {
+        Participant p = participantRepo.findById(id).orElseThrow(()-> new AppException("Participant not found", HttpStatus.NO_CONTENT));
+        p.setAssigned(true);
+        participantRepo.save(p);
+    }
+
+
 }

@@ -1,6 +1,7 @@
 package com.master.trainingcentermanagement.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,6 +27,9 @@ public class Participant {
     private String email;
     private String phone;
     private String city;
+    private boolean assigned;
+    private boolean evaluated;
+
 
     @ManyToOne
     private Course course;
