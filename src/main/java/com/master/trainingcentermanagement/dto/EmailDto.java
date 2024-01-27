@@ -13,6 +13,7 @@ public class EmailDto {
         private String subject;
         private String body;
         private Long courseId ;
+        private Long participantId ;
 
 }
 

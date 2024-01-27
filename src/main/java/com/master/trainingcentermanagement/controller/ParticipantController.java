@@ -39,6 +39,12 @@ public class ParticipantController {
         return participantService.listParticipants();
     }
 
+    @GetMapping("/{id}")
+    public ParticipantDto getParticipantById(@PathVariable Long id){
+        System.out.println("the is is :"+id);
+        return participantService.getParticipantById(id);
+    }
+
     @DeleteMapping("/{id}")
     public void  deleteParticipant(@PathVariable Long id){
         participantService.deleteParticipant(id);

@@ -18,7 +18,7 @@ import org.thymeleaf.context.Context;
         private final TemplateEngine templateEngine;
 
     @Override
-    public void sendEmailWithHtmlTemplate(String to, String subject, String templateName, Context context, Long courseId) {
+    public void sendEmailWithHtmlTemplate(String to, String subject, String templateName, Context context, Long courseId, Long participantId) {
         MimeMessage mimeMessage = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "UTF-8");
 
@@ -26,6 +26,7 @@ import org.thymeleaf.context.Context;
             helper.setTo(to);
             helper.setSubject(subject);
             context.setVariable("courseId", courseId);
+            context.setVariable("participantId", participantId);
             String htmlContent = templateEngine.process(templateName,  context);
             helper.setText(htmlContent, true);
             mailSender.send(mimeMessage);

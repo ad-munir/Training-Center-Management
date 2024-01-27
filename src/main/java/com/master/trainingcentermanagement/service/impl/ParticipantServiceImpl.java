@@ -9,7 +9,6 @@ import com.master.trainingcentermanagement.entity.Participant;
 import com.master.trainingcentermanagement.service.ParticipantService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -69,6 +68,13 @@ public class ParticipantServiceImpl implements ParticipantService {
         p.setAssigned(true);
         participantRepo.save(p);
     }
+
+    @Override
+    public ParticipantDto getParticipantById(Long id){
+        return  modelMapper.map(participantRepo.findById(id).get() , ParticipantDto.class) ;
+    }
+
+
 
 
 }

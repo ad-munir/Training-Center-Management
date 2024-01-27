@@ -12,4 +12,5 @@ public class FeedbackDto {
     private int score;
     private String comments;
     private Long courseId;
+    private Long participantId ;
 }
