@@ -14,4 +14,6 @@ public interface ParticipantService {
     void deleteParticipant(Long id) ;
 
     void assignToCourse(Long id);
+
+    ParticipantDto getParticipantById(Long id);
 }
