@@ -2,6 +2,7 @@ package com.master.trainingcentermanagement.entity;
 
 
 import com.fasterxml.jackson.annotation.*;
+import com.master.trainingcentermanagement.user.Role;
 import com.master.trainingcentermanagement.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
