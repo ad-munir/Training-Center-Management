@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/schedules")
-
+@CrossOrigin("http://localhost:4200")
 public class ScheduleController {
 
 

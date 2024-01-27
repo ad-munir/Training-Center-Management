@@ -1,11 +1,9 @@
 package com.master.trainingcentermanagement.controller;
 
 import com.master.trainingcentermanagement.dto.CourseDto;
-import com.master.trainingcentermanagement.dto.TrainerDto;
 import com.master.trainingcentermanagement.entity.Course;
 import com.master.trainingcentermanagement.repository.CourseRepo;
 import com.master.trainingcentermanagement.service.impl.CourseServiceImpl;
-import com.master.trainingcentermanagement.user.User;
 import com.master.trainingcentermanagement.user.UserRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.Resource;
@@ -46,6 +44,8 @@ public class CourseController {
     ) throws IllegalStateException, IOException {
         String pathPhoto = "src/main/resources/static/photos/course/";
 //        User trainer = userRepo.findById(trainerId).get() ;
+
+
         Course c = Course.builder()
                         .title(title)
                         .hours(hours)

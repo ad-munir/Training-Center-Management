@@ -19,8 +19,8 @@ public class Schedule {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private int hours;
-    private LocalDateTime dateTime;
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
 
     @ManyToOne
     private Course course;

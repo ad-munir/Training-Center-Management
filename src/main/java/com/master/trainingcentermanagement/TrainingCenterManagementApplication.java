@@ -35,12 +35,12 @@ public class TrainingCenterManagementApplication implements CommandLineRunner {
 		if (userRepo.count() == 0){
 
 			User user = User.builder()
-					.firstname("abdeljebar")
-					.lastname("hinda")
-					.email("hindaabdjbbar@gmail.com")
-					.phone("0675410450")
+					.firstname("mounir")
+					.lastname("ayad")
+					.email("mounir@admin.com")
+					.phone("0682439559")
 					.role(Role.ADMIN)
-					.password(passwordEncoder.encode("Abdo@2000"))
+					.password(passwordEncoder.encode("00000000"))
 					.active(true)
 					.build();
 
