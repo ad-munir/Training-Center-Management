@@ -38,11 +38,13 @@ public class SecurityConfig {
                     "/configuration/ui",
                     "/configuration/security",
                     "/swagger-ui/**",
+                    "/api/v1/courses",
+                    "/api/v1/feedbacks",
+                    "api/v1/emails",
                     "/webjars/**",
                     "/api/v1/courses/photos/course/**",
                     "/api/v1/trainers/photos/trainer/**",
                     "/api/v1/assistants/photos/assistant/**",
-//                    "/api/v1/courses/{id}",
                     "/api/v1/courses/**",
                     "/swagger-ui.html"
 
