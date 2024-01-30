@@ -41,7 +41,6 @@ public class ParticipantController {
 
     @GetMapping("/{id}")
     public ParticipantDto getParticipantById(@PathVariable Long id){
-        System.out.println("the is is :"+id);
         return participantService.getParticipantById(id);
     }
 
