@@ -2,7 +2,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/training_center
     username: postgres
-    password: localpost
+    password: Abdo@2000
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
@@ -17,8 +17,8 @@ spring:
   mail:
     host: smtp.gmail.com
     port: 587
-    username: monirayad32@gmail.com
-    password: siws xqay tvyr mkri
+    username: hindaabdjbbar@gmail.com
+    password: orvo zdhe bhxb eedd
     properties:
       mail:
         smtp:
