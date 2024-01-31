@@ -60,7 +60,7 @@ public class TrainerController {
 
     @PostMapping
     public TrainerDto addTrainer(
-            @RequestParam  String firstname,
+            @RequestParam String firstname,
             @RequestParam String lastname,
             @RequestParam String email,
             @RequestParam String phone,
@@ -198,7 +198,44 @@ public class TrainerController {
     }
 
 
+    @PutMapping("/{id}")
+    public TrainerDto editTrainer(
+            @PathVariable String id,
+            @RequestParam String firstname,
+            @RequestParam String lastname,
+            @RequestParam String email,
+            @RequestParam String phone,
+            @RequestParam String keywords,
+            @RequestParam String password,
+            @RequestParam MultipartFile image
+    ) throws IllegalStateException, IOException {
+        String pathPhoto = "src/main/resources/static/photos/trainer/";
 
+
+        User trainer = User.builder()
+                .id(Long.valueOf(id))
+                .firstname(firstname)
+                .lastname(lastname)
+                .email(email)
+                .phone(phone)
+                .keywords(keywords)
+                .password(passwordEncoder.encode(password))
+                .image(null)
+                .role(Role.TRAINER)
+                .active(true)
+                .build();
+
+        trainer = userRepo.save(trainer);
+
+        pathPhoto += trainer.getId();
+        image.transferTo(Path.of(pathPhoto));
+        String urlPhoto="http://localhost:8080/api/v1/trainers/photos/trainer/"+trainer.getId();
+
+        trainer.setImage(urlPhoto);
+        trainer = userRepo.save(trainer) ;
+
+        return modelMapper.map(trainer , TrainerDto.class);
+    }
 
 
 }
