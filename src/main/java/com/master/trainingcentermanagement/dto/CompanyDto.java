@@ -12,6 +12,7 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class CompanyDto {
 
+    Long id;
     String name ;
     String address ;
     String email ;

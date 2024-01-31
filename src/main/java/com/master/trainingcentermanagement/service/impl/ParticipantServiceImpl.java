@@ -10,6 +10,7 @@ import com.master.trainingcentermanagement.service.ParticipantService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -63,10 +64,13 @@ public class ParticipantServiceImpl implements ParticipantService {
     }
 
     @Override
-    public void assignToCourse(Long id) {
-        Participant p = participantRepo.findById(id).orElseThrow(()-> new AppException("Participant not found", HttpStatus.NO_CONTENT));
+    public ResponseEntity<String> assignToCourse(Long id) {
+        Participant p = participantRepo.findById(id).orElseThrow(()-> new AppException("", HttpStatus.NO_CONTENT));
         p.setAssigned(true);
         participantRepo.save(p);
+
+
+        return ResponseEntity.ok("Participant[id: "+ id +"] assigned to the course");
     }
 
     @Override
