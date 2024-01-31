@@ -36,8 +36,6 @@ public class AssistantController {
     }
 
 
-
-
     @GetMapping
     public List<AssistantDto> listAssistants(){
         return assistantService.listAssistants();

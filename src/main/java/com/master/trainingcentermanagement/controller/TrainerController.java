@@ -178,7 +178,8 @@ public class TrainerController {
 
             if (user != null) {
                 Context context = new Context();
-                mailSenderServiceImp.sendEmailToTrainerExtern(user.getEmail(), "Confirmation of Acceptance as External Trainer for eTrain Platform", "trainer-extern-mail-template", context, user.getFirstname());
+
+                mailSenderServiceImp.sendEmailToTrainerExtern(user.getEmail(), "Welcome to Our Training platform!", "trainer-extern-mail-template", context, user.getFirstname());
 
                 System.out.println("Trainer extern validation " + id);
 
