@@ -1,6 +1,8 @@
 package com.master.trainingcentermanagement.controller;
 
 import com.master.trainingcentermanagement.dto.ScheduleDto;
+import com.master.trainingcentermanagement.dto.ScheduleIn;
+import com.master.trainingcentermanagement.dto.ScheduleOut;
 import com.master.trainingcentermanagement.service.impl.ScheduleServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,15 +18,15 @@ public class ScheduleController {
     @Autowired
     ScheduleServiceImpl scheduleService;
     @PostMapping
-    public ScheduleDto saveSchedule(@RequestBody ScheduleDto schedule){
-        return scheduleService.saveSchedule(schedule);
+    public ScheduleOut saveSchedule(@RequestBody ScheduleIn schedule){
+        return scheduleService.saveSchedule2(schedule);
 
     }
 
     @GetMapping
-    public List<ScheduleDto> listSchedules(){
+    public List<ScheduleOut> listSchedules(){
 
-        return scheduleService.listSchedules();
+        return scheduleService.listSchedules2();
     }
 
     @DeleteMapping("/{id}")

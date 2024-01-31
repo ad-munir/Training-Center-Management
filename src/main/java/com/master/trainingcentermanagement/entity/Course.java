@@ -37,6 +37,7 @@ public class Course {
 
 
     @OneToMany(mappedBy = "course")
+    @JsonIgnore
     private List<Feedback> feedbacks;
 
 
@@ -52,9 +53,11 @@ public class Course {
 
 
     @OneToMany(mappedBy = "course")
+    @JsonIgnore
     private List<Participant> participants;
 
     @OneToMany(mappedBy = "course")
+    @JsonIgnore
     private List<Schedule> schedules;
 
 

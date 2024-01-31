@@ -1,6 +1,8 @@
 package com.master.trainingcentermanagement.service.impl;
 
 
+import com.master.trainingcentermanagement.dto.ScheduleIn;
+import com.master.trainingcentermanagement.dto.ScheduleOut;
 import com.master.trainingcentermanagement.entity.Course;
 import com.master.trainingcentermanagement.exception.errors.AppException;
 import com.master.trainingcentermanagement.repository.CourseRepo;
@@ -56,22 +58,43 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     @Override
     public List<ScheduleDto> listSchedules() {
+        return null;
+    }
+
+
+    public ScheduleOut saveSchedule2(ScheduleIn schedule) {
+
+
+        Course crs = courseRepo.findById(schedule.getCourseId())
+                .orElseThrow(()-> new AppException("Course not found !", HttpStatus.NO_CONTENT));
+
+
+        Schedule sc = Schedule.builder()
+                .startDate(schedule.getStartDate())
+                .endDate(schedule.getEndDate())
+                .course(crs)
+                .build();
+
+        sc = scheduleRepo.save(sc);
+        return modelMapper.map(sc, ScheduleOut.class);
+    }
+
+    public List<ScheduleOut> listSchedules2() {
 
         List<Schedule> all = scheduleRepo.findAll();
-        List<ScheduleDto> dto = new ArrayList<>();
+        List<ScheduleOut> out = new ArrayList<>();
 
         all.forEach(sch -> {
-            dto.add(new ScheduleDto(
-                    sch.getStartDate(),
-                    sch.getEndDate(),
-                    null,
-                    sch.getCourse()));
+
+            ScheduleOut so = ScheduleOut.builder()
+                    .startDate(sch.getStartDate())
+                    .endDate(sch.getEndDate())
+                    .title(sch.getCourse().getTitle())
+                    .build();
+
+            out.add(so);
         });
-//        return scheduleRepo.findAll()
-//                .stream()
-//                .map(e -> modelMapper.map(e, ScheduleDto.class))
-//                .collect(Collectors.toList());
-        return dto;
+        return out;
 
     }
 
