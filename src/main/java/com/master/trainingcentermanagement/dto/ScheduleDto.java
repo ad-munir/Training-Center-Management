@@ -18,4 +18,5 @@ public class ScheduleDto {
     private Long courseId;
 
     private Course course;
+
 }

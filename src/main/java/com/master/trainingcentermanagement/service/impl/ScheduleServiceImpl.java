@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,9 +31,19 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Override
     public ScheduleDto saveSchedule(ScheduleDto schedule) {
 
+        System.out.println("---------------");
+        System.out.println("---------------");
         Course course = courseRepo.findById(schedule.getCourseId())
                 .orElseThrow(()-> new AppException("Course not found !", HttpStatus.NO_CONTENT));
 
+
+        System.out.println("---------------");
+        System.out.println("---------------");
+        System.out.println(schedule.getCourseId());
+        System.out.println("---------------");
+        System.out.println("---------------");
+        System.out.println("---------------");
+        System.out.println("---------------");
         Schedule sc = Schedule.builder()
                 .startDate(schedule.getStartDate())
                 .endDate(schedule.getEndDate())
@@ -40,17 +51,28 @@ public class ScheduleServiceImpl implements ScheduleService {
                 .build();
 
         sc = scheduleRepo.save(sc);
-
-
         return modelMapper.map(sc, ScheduleDto.class);
     }
 
     @Override
     public List<ScheduleDto> listSchedules() {
-        return scheduleRepo.findAll()
-                .stream()
-                .map(e -> modelMapper.map(e, ScheduleDto.class))
-                .collect(Collectors.toList());
+
+        List<Schedule> all = scheduleRepo.findAll();
+        List<ScheduleDto> dto = new ArrayList<>();
+
+        all.forEach(sch -> {
+            dto.add(new ScheduleDto(
+                    sch.getStartDate(),
+                    sch.getEndDate(),
+                    null,
+                    sch.getCourse()));
+        });
+//        return scheduleRepo.findAll()
+//                .stream()
+//                .map(e -> modelMapper.map(e, ScheduleDto.class))
+//                .collect(Collectors.toList());
+        return dto;
+
     }
 
     @Override
