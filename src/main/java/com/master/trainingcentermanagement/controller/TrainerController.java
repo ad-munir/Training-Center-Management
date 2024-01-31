@@ -4,6 +4,7 @@ import com.master.trainingcentermanagement.dto.CourseDto;
 import com.master.trainingcentermanagement.dto.TrainerDto;
 import com.master.trainingcentermanagement.entity.Course;
 import com.master.trainingcentermanagement.exception.errors.AppException;
+import com.master.trainingcentermanagement.service.impl.MailSenderServiceImp;
 import com.master.trainingcentermanagement.service.impl.TrainerServiceImpl;
 import com.master.trainingcentermanagement.user.Role;
 import com.master.trainingcentermanagement.user.User;
@@ -20,6 +21,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.thymeleaf.context.Context;
 
 
 import java.io.IOException;
@@ -36,6 +38,7 @@ public class TrainerController {
     private final TrainerServiceImpl trainerService;
     private final UserRepo userRepo ;
     private final PasswordEncoder passwordEncoder;
+    private final MailSenderServiceImp mailSenderServiceImp;
 
     @GetMapping("/{id}")
     public TrainerDto getTrainerById(@PathVariable Long id) {
@@ -141,6 +144,61 @@ public class TrainerController {
                 .contentType(MediaType.IMAGE_JPEG)
                 .body(file);
     }
+
+//    @PostMapping("/validate/{id}")
+//    public boolean validateExternTrainer(@PathVariable Long id) {
+//        try {
+//            User user = userRepo.findById(id).get();
+//
+//            if (user != null) {
+//                Context context = new Context();
+//                mailSenderServiceImp.sendEmailToTrainerExtern(user.getEmail(), "Confirmation of Acceptance as External Trainer for eTrain Platform", "trainer-extern-mail-template", context, user.getFirstname());
+//
+//                System.out.println("Trainer extern validation " + id);
+//
+//                user.setActive(true);
+//                user = userRepo.save(user);
+//
+//                return true;
+//            } else {
+//                // Handle the case where the user with the given id is not found
+//                return false;
+//            }
+//        } catch (Exception e) {
+//            // Handle the exception (e.g., log it)
+//            e.printStackTrace();
+//            return false;
+//        }
+//   }
+
+    @PostMapping("/validate/{id}")
+    public ResponseEntity<Boolean> validateExternTrainer(@PathVariable Long id) {
+        try {
+            User user = userRepo.findById(id).orElse(null);
+
+            if (user != null) {
+                Context context = new Context();
+                mailSenderServiceImp.sendEmailToTrainerExtern(user.getEmail(), "Confirmation of Acceptance as External Trainer for eTrain Platform", "trainer-extern-mail-template", context, user.getFirstname());
+
+                System.out.println("Trainer extern validation " + id);
+
+                user.setActive(true);
+                user = userRepo.save(user);
+
+                return ResponseEntity.ok(true);
+            } else {
+                // Handle the case where the user with the given id is not found
+                return ResponseEntity.notFound().build();
+            }
+        } catch (Exception e) {
+            // Handle the exception (e.g., log it)
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+
+
 
 
 }

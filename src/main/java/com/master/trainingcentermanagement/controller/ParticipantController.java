@@ -21,11 +21,10 @@ public class ParticipantController {
 
     private final ParticipantServiceImpl participantService;
 
-    @PostMapping("assign/{id}")
+    @PutMapping("assign/{id}")
     public ResponseEntity<String> assignToCourse(@PathVariable Long id){
 
-        participantService.assignToCourse(id);
-        return ResponseEntity.ok("Participant[id: "+ id +"] assigned to the course");
+        return participantService.assignToCourse(id);
     }
 
     @PostMapping

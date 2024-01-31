@@ -35,4 +35,21 @@ import org.thymeleaf.context.Context;
         }
     }
 
+    public void sendEmailToTrainerExtern(String to, String subject, String templateName, Context context, String externTrainerName) {
+        MimeMessage mimeMessage = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "UTF-8");
+
+        try {
+            helper.setTo(to);
+            helper.setSubject(subject);
+            context.setVariable("externTrainerName", externTrainerName);
+            String htmlContent = templateEngine.process(templateName,  context);
+            helper.setText(htmlContent, true);
+            mailSender.send(mimeMessage);
+        } catch (MessagingException e) {
+            // Handle exception
+        }
+    }
+
+
 }
