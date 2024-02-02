@@ -1,11 +1,15 @@
 package com.master.trainingcentermanagement.service.impl;
 
+import com.master.trainingcentermanagement.entity.Participant;
+import com.master.trainingcentermanagement.exception.errors.AppException;
 import com.master.trainingcentermanagement.repository.CompanyRepo;
 import com.master.trainingcentermanagement.dto.CompanyDto;
 import com.master.trainingcentermanagement.entity.Company;
 import com.master.trainingcentermanagement.service.CompanyService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -44,4 +48,6 @@ public class CompanyServiceImpl implements CompanyService {
     public void deleteCompany(Long id) {
         companyRepo.deleteById(id);
     }
+
+
 }

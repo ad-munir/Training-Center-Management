@@ -1,11 +1,13 @@
 package com.master.trainingcentermanagement.dto;
 
+import com.master.trainingcentermanagement.entity.Feedback;
 import com.master.trainingcentermanagement.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -20,6 +22,7 @@ public class CourseDto {
     private String category;
     Object image ;
     private User trainer;
+    private List<Feedback> feedbacks;
 
 
 }

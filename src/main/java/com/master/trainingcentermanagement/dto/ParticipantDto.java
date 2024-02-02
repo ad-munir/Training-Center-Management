@@ -22,6 +22,6 @@ public class ParticipantDto {
     private boolean assigned;
     private boolean evaluated;
     private Long courseId;
-    private Course course;
+    private CourseDto course;
 
 }

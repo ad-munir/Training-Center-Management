@@ -23,13 +23,25 @@ public class EmailController {
     private final ParticipantRepo participantRepo ;
 
 
-    @PostMapping("/feedback")
-    public String sendFeedbackEmail(@RequestBody EmailDto emailDto) {
+//    @PostMapping("/feedback")
+    public String sendFeedbackEmailEncoded(@RequestBody EmailDto emailDto) {
            System.out.println(emailDto);
             Context context = new Context();
             context.setVariable("message", emailDto.getBody());
             mailSenderServiceImp.sendEmailWithHtmlTemplate(emailDto.getTo(), emailDto.getSubject(), "email-template", context , emailDto.getCourseId(), emailDto.getParticipantId());
             return "HTML email sent successfully!";
+
+
+    }
+
+
+    @PostMapping("/feedback")
+    public String sendFeedbackEmail(@RequestBody EmailDto emailDto) {
+        System.out.println(emailDto);
+        Context context = new Context();
+        context.setVariable("message", emailDto.getBody());
+        mailSenderServiceImp.sendEmailWithHtmlTemplate(emailDto.getTo(), emailDto.getSubject(), "email-template", context , emailDto.getCourseId(), emailDto.getParticipantId());
+        return "HTML email sent successfully!";
 
 
     }

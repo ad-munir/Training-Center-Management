@@ -11,29 +11,41 @@ import org.thymeleaf.TemplateEngine;
 
 import org.thymeleaf.context.Context;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.Base64;
+
 @RequiredArgsConstructor
 @Service
     public class MailSenderServiceImp implements MailSenderService{
         private final JavaMailSender mailSender;
         private final TemplateEngine templateEngine;
 
-    @Override
     public void sendEmailWithHtmlTemplate(String to, String subject, String templateName, Context context, Long courseId, Long participantId) {
         MimeMessage mimeMessage = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "UTF-8");
 
         try {
+            // Encode parameters using Base64
+            String params = "courseId=" + courseId + "&participantId=" + participantId;
+            String encodedParams = Base64.getEncoder().encodeToString(params.getBytes("UTF-8"));
+
+            // Include encoded params in the URL
+            String url = "http://localhost:4200/course-feedback?" + encodedParams;
+
             helper.setTo(to);
             helper.setSubject(subject);
-            context.setVariable("courseId", courseId);
-            context.setVariable("participantId", participantId);
-            String htmlContent = templateEngine.process(templateName,  context);
+            context.setVariable("feedbackUrl", url);
+            String htmlContent = templateEngine.process(templateName, context);
             helper.setText(htmlContent, true);
             mailSender.send(mimeMessage);
-        } catch (MessagingException e) {
+        } catch (MessagingException | UnsupportedEncodingException e) {
             // Handle exception
         }
     }
+
+
+
 
     public void sendEmailToTrainerExtern(String to, String subject, String templateName, Context context, String externTrainerName) {
         MimeMessage mimeMessage = mailSender.createMimeMessage();

@@ -33,7 +33,7 @@
         <p>We hope you're doing well.</p>
         <p>Thank you for participating in one the best courses on our platform 😉</p>
         <p>Your opinion interests us, which is why we offer you this form to collect your feedback:
-            <a th:href="@{'http://localhost:4200/course-feedback?courseId=' + ${courseId} + '&participantId=' + ${participantId}}">
+            <a th:href="@{${feedbackUrl}}">
                 Feedback form
             </a>
         </p>

@@ -1,19 +1,25 @@
 package com.master.trainingcentermanagement.controller;
 
 import com.master.trainingcentermanagement.dto.CourseDto;
+import com.master.trainingcentermanagement.entity.Company;
 import com.master.trainingcentermanagement.entity.Course;
+import com.master.trainingcentermanagement.exception.errors.AppException;
+import com.master.trainingcentermanagement.repository.CompanyRepo;
 import com.master.trainingcentermanagement.repository.CourseRepo;
 import com.master.trainingcentermanagement.service.impl.CourseServiceImpl;
 import com.master.trainingcentermanagement.user.UserRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.FileSystemResource;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.MediaType;
 import java.nio.file.Path;
 import org.modelmapper.ModelMapper;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -28,6 +34,7 @@ public class CourseController {
     private final CourseServiceImpl courseService;
     private final CourseRepo courseRepo;
     private final UserRepo userRepo;
+    private final CompanyRepo companyRepo;
 
 
 
@@ -38,38 +45,60 @@ public class CourseController {
             @RequestParam float cost,
             @RequestParam String description,
             @RequestParam String type,
+            @RequestParam(required = false) Long companyId,
             @RequestParam String category,
             @RequestParam MultipartFile image,
             @RequestParam Long trainerId
     ) throws IllegalStateException, IOException {
-        String pathPhoto = "src/main/resources/static/photos/course/";
-//        User trainer = userRepo.findById(trainerId).get() ;
 
+        String pathPhoto = "src/main/resources/static/photos/course";
 
-        Course c = Course.builder()
-                        .title(title)
-                        .hours(hours)
-                        .cost(cost)
-                        .description(description)
-                        .type(type)
-                        .category(category)
-                        .image(null)
-                        .trainer(userRepo.findById(trainerId).get())
-                        .build();
+        Course c = null;
 
-        Course course = courseRepo.save(c) ;
+        if (type.equals("COMPANY") && companyId != null) {
+            // If type is COMPANY and companyId is provided, associate the course with the specified company
+            Company comp = companyRepo.findById(companyId)
+                    .orElseThrow(() -> new AppException("Company not found", HttpStatus.NO_CONTENT));
 
-        pathPhoto+=course.getId();
+            c = Course.builder()
+                    .title(title)
+                    .hours(hours)
+                    .cost(cost)
+                    .description(description)
+                    .type(type)
+                    .category(category)
+                    .image(null)
+                    .trainer(userRepo.findById(trainerId).orElseThrow(() -> new AppException("Trainer not found", HttpStatus.NO_CONTENT)))
+                    .companies(Collections.singletonList(comp))
+                    .build();
+        } else {
+            // For other types or when companyId is not provided, create a course without associating a company
+            c = Course.builder()
+                    .title(title)
+                    .hours(hours)
+                    .cost(cost)
+                    .description(description)
+                    .type(type)
+                    .category(category)
+                    .image(null)
+                    .trainer(userRepo.findById(trainerId).orElseThrow(() -> new AppException("Trainer not found", HttpStatus.NO_CONTENT)))
+                    .build();
+        }
+
+        Course course = courseRepo.save(c);
+
+        pathPhoto += "/" + course.getId();
         image.transferTo(Path.of(pathPhoto));
-        String urlPhoto="http://localhost:8080/api/v1/courses/photos/course/"+course.getId();
-
+        String urlPhoto = "http://localhost:8080/api/v1/courses/photos/course/" + course.getId();
 
         course.setImage(urlPhoto);
         course = courseRepo.save(course);
 
         return modelMapper.map(course, CourseDto.class);
-
     }
+
+
+
     @GetMapping
     public List<CourseDto> findAllCourses(){
 

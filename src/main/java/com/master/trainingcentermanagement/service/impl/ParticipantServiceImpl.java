@@ -1,5 +1,6 @@
 package com.master.trainingcentermanagement.service.impl;
 
+import com.master.trainingcentermanagement.dto.CourseDto;
 import com.master.trainingcentermanagement.entity.Course;
 import com.master.trainingcentermanagement.exception.errors.AppException;
 import com.master.trainingcentermanagement.repository.CourseRepo;
@@ -13,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -49,14 +51,36 @@ public class ParticipantServiceImpl implements ParticipantService {
 
     @Override
     public List<ParticipantDto> listParticipants() {
-        return participantRepo.findAll()
-                .stream()
-                .map(e -> {
-                    ParticipantDto dto = modelMapper.map(e, ParticipantDto.class);
-                    dto.setCourseId(e.getCourse().getId());
-                    return dto;
-                })
-                .collect(Collectors.toList());
+
+        List<Participant> all = participantRepo.findAll();
+        List<ParticipantDto> dto = new ArrayList<>();
+
+        all.forEach(p -> {
+            dto.add(new ParticipantDto(
+                    p.getId(),
+                    p.getFirstname(),
+                    p.getLastname(),
+                    p.getBirthday(),
+                    p.getCity(),
+                    p.getEmail(),
+                    p.getPhone(),
+                    p.isAssigned(),
+                    p.isEvaluated(),
+                    p.getCourse().getId(),
+                    modelMapper.map(p.getCourse(), CourseDto.class)
+            ));
+        });
+
+        return dto;
+
+//        return participantRepo.findAll()
+//                .stream()
+//                .map(e -> {
+//                    ParticipantDto dto = modelMapper.map(e, ParticipantDto.class);
+//                    dto.setCourseId(e.getCourse().getId());
+//                    return dto;
+//                })
+//                .collect(Collectors.toList());
     }
 
     public void deleteParticipant(Long id) {

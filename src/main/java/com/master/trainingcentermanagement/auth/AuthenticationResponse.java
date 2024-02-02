@@ -13,6 +13,7 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class AuthenticationResponse {
 
+    Long id;
     String firstname;
     String lastname;
     String email;

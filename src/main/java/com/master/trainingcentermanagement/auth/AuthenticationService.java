@@ -50,7 +50,7 @@ public class AuthenticationService {
         String jwtToken = jwtService.generateToken(user);
 
 
-        return new AuthenticationResponse(user.getFirstname(), user.getLastname(), user.getEmail(), user.getPhone(), user.getRole(), user.getKeywords(),user.getImage(),  jwtToken);
+        return new AuthenticationResponse(user.getId(), user.getFirstname(), user.getLastname(), user.getEmail(), user.getPhone(), user.getRole(), user.getKeywords(),user.getImage(),  jwtToken);
     }
 
 
@@ -73,6 +73,6 @@ public class AuthenticationService {
 
         String jwtToken = jwtService.generateToken(user);
 
-        return new AuthenticationResponse(user.getFirstname(), user.getLastname(), user.getEmail(), user.getPhone(), user.getRole(), user.getKeywords(), user.getImage(), jwtToken);
+        return new AuthenticationResponse(user.getId(), user.getFirstname(), user.getLastname(), user.getEmail(), user.getPhone(), user.getRole(), user.getKeywords(), user.getImage(), jwtToken);
     }
 }
