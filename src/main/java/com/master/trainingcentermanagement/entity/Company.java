@@ -7,7 +7,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @AllArgsConstructor @NoArgsConstructor @Data
 @Entity
@@ -23,7 +25,13 @@ public class Company {
     String phone;
     String url;
 
-    @ManyToMany(mappedBy = "companies")
+
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            },
+            mappedBy = "companies")
     @JsonIgnore
-    private List<Course> courses;
+    private Set<Course> courses = new HashSet<>();
 }

@@ -19,14 +19,14 @@ public class ScheduleController {
     ScheduleServiceImpl scheduleService;
     @PostMapping
     public ScheduleOut saveSchedule(@RequestBody ScheduleIn schedule){
-        return scheduleService.saveSchedule2(schedule);
+        return scheduleService.saveSchedule(schedule);
 
     }
 
     @GetMapping
     public List<ScheduleOut> listSchedules(){
 
-        return scheduleService.listSchedules2();
+        return scheduleService.listSchedules();
     }
 
     @DeleteMapping("/{id}")

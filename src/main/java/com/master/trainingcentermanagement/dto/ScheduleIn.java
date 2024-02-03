@@ -16,5 +16,6 @@ public class ScheduleIn {
     private Long courseId;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
+//    private Long companyId = null;
 
 }

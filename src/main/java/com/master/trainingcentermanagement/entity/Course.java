@@ -10,7 +10,10 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @AllArgsConstructor
@@ -40,15 +43,17 @@ public class Course {
     private List<Feedback> feedbacks;
 
 
-
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JsonIgnore
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            })
     @JoinTable(
             name = "company_course",
             joinColumns = @JoinColumn(name = "course_id"),
             inverseJoinColumns = @JoinColumn(name = "company_id")
     )
-    private List<Company> companies;
+    private Set<Company> companies = new HashSet<>();
 
 
     @OneToMany(mappedBy = "course")
@@ -58,6 +63,27 @@ public class Course {
     @OneToMany(mappedBy = "course")
     private List<Schedule> schedules;
 
+
+
+    public void addCompany(Company company) {
+
+        if (this.companies == null) {
+            this.companies = new HashSet<>();
+        }
+        this.companies.add(company);
+        company.getCourses().add(this);
+        System.out.println("*********");
+    }
+
+    public void removeCompany(Company company) {
+        if (this.companies != null) {
+            this.companies.remove(company);
+        }
+
+        if (company.getCourses() != null) {
+            company.getCourses().remove(this);
+        }
+    }
 
 
 

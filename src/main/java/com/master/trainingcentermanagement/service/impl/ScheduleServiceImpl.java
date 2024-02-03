@@ -3,8 +3,10 @@ package com.master.trainingcentermanagement.service.impl;
 
 import com.master.trainingcentermanagement.dto.ScheduleIn;
 import com.master.trainingcentermanagement.dto.ScheduleOut;
+import com.master.trainingcentermanagement.entity.Company;
 import com.master.trainingcentermanagement.entity.Course;
 import com.master.trainingcentermanagement.exception.errors.AppException;
+import com.master.trainingcentermanagement.repository.CompanyRepo;
 import com.master.trainingcentermanagement.repository.CourseRepo;
 import com.master.trainingcentermanagement.repository.ScheduleRepo;
 
@@ -28,45 +30,32 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     private final ScheduleRepo scheduleRepo;
     private final CourseRepo courseRepo;
+    private final CompanyRepo companyRepo;
     private final ModelMapper modelMapper;
 
-    @Override
-    public ScheduleDto saveSchedule(ScheduleDto schedule) {
 
-        System.out.println("---------------");
-        System.out.println("---------------");
-        Course course = courseRepo.findById(schedule.getCourseId())
-                .orElseThrow(()-> new AppException("Course not found !", HttpStatus.NO_CONTENT));
-
-
-        System.out.println("---------------");
-        System.out.println("---------------");
-        System.out.println(schedule.getCourseId());
-        System.out.println("---------------");
-        System.out.println("---------------");
-        System.out.println("---------------");
-        System.out.println("---------------");
-        Schedule sc = Schedule.builder()
-                .startDate(schedule.getStartDate())
-                .endDate(schedule.getEndDate())
-                .course(course)
-                .build();
-
-        sc = scheduleRepo.save(sc);
-        return modelMapper.map(sc, ScheduleDto.class);
-    }
-
-    @Override
-    public List<ScheduleDto> listSchedules() {
-        return null;
-    }
-
-
-    public ScheduleOut saveSchedule2(ScheduleIn schedule) {
-
+    public Course updateCourse(ScheduleIn schedule) {
 
         Course crs = courseRepo.findById(schedule.getCourseId())
                 .orElseThrow(()-> new AppException("Course not found !", HttpStatus.NO_CONTENT));
+
+//
+//
+//        if (crs.getType().equals("COMPANY") && schedule.getCompanyId() != null) {
+//            // If type is COMPANY and companyId is provided, associate the course with the specified company
+//            Company comp = companyRepo.findById(schedule.getCompanyId())
+//                    .orElseThrow(() -> new AppException("Company not found", HttpStatus.NO_CONTENT));
+//
+//            crs.addCompany(comp);
+//
+//        }
+        return crs;
+    }
+
+
+    public ScheduleOut saveSchedule(ScheduleIn schedule) {
+
+        Course crs = updateCourse(schedule);
 
 
         Schedule sc = Schedule.builder()
@@ -79,7 +68,7 @@ public class ScheduleServiceImpl implements ScheduleService {
         return modelMapper.map(sc, ScheduleOut.class);
     }
 
-    public List<ScheduleOut> listSchedules2() {
+    public List<ScheduleOut> listSchedules() {
 
         List<Schedule> all = scheduleRepo.findAll();
         List<ScheduleOut> out = new ArrayList<>();

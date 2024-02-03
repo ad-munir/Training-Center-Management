@@ -21,6 +21,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
@@ -53,39 +55,43 @@ public class CourseController {
 
         String pathPhoto = "src/main/resources/static/photos/course";
 
-        Course c = null;
+        System.out.println(title);
+        System.out.println(hours);
+        System.out.println(type);
+        System.out.println("companyId "+companyId);
+        System.out.println("trainerId "+trainerId);
+
+        Course c = Course.builder()
+                .title(title)
+                .hours(hours)
+                .cost(cost)
+                .description(description)
+                .type(type)
+                .category(category)
+                .image(null)
+                .trainer(userRepo.findById(trainerId).orElseThrow(() -> new AppException("Trainer not found", HttpStatus.NO_CONTENT)))
+                .build();
 
         if (type.equals("COMPANY") && companyId != null) {
+            System.out.println("type is company");
             // If type is COMPANY and companyId is provided, associate the course with the specified company
             Company comp = companyRepo.findById(companyId)
                     .orElseThrow(() -> new AppException("Company not found", HttpStatus.NO_CONTENT));
 
-            c = Course.builder()
-                    .title(title)
-                    .hours(hours)
-                    .cost(cost)
-                    .description(description)
-                    .type(type)
-                    .category(category)
-                    .image(null)
-                    .trainer(userRepo.findById(trainerId).orElseThrow(() -> new AppException("Trainer not found", HttpStatus.NO_CONTENT)))
-                    .companies(Collections.singletonList(comp))
-                    .build();
-        } else {
-            // For other types or when companyId is not provided, create a course without associating a company
-            c = Course.builder()
-                    .title(title)
-                    .hours(hours)
-                    .cost(cost)
-                    .description(description)
-                    .type(type)
-                    .category(category)
-                    .image(null)
-                    .trainer(userRepo.findById(trainerId).orElseThrow(() -> new AppException("Trainer not found", HttpStatus.NO_CONTENT)))
-                    .build();
+            c.addCompany(comp);
+
+            System.out.println("company found");
+            System.out.println("-------------------");
+            System.out.println("-------------------");
+            System.out.println(c.getTrainer());
+            System.out.println(c.getCompanies());
+            System.out.println("-------------------");
+            System.out.println("-------------------");
         }
 
+        System.out.println("saving course: "+ c.toString());
         Course course = courseRepo.save(c);
+        System.out.println("course saved");
 
         pathPhoto += "/" + course.getId();
         image.transferTo(Path.of(pathPhoto));
