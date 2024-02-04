@@ -79,17 +79,8 @@ public class CourseController {
                     .orElseThrow(() -> new AppException("Company not found", HttpStatus.NO_CONTENT));
 
             c.addCompany(comp);
-
-            System.out.println("company found");
-            System.out.println("-------------------");
-            System.out.println("-------------------");
-            System.out.println(c.getTrainer());
-            System.out.println(c.getCompanies());
-            System.out.println("-------------------");
-            System.out.println("-------------------");
         }
 
-        System.out.println("saving course: "+ c.toString());
         Course course = courseRepo.save(c);
         System.out.println("course saved");
 

@@ -18,6 +18,7 @@ public class TrainerDto {
     private String lastname;
     private String email;
     private String phone;
+    private String password;
     private String keywords;
     private boolean active;
     private Object image;

@@ -30,6 +30,8 @@ public class Course {
     private String title;
     private String hours;
     private float cost;
+
+    @Column(columnDefinition = "TEXT")
     private String description;
     private String type;
     private String category;
@@ -71,7 +73,7 @@ public class Course {
             this.companies = new HashSet<>();
         }
         this.companies.add(company);
-        company.getCourses().add(this);
+//        company.getCourses().add(this);
         System.out.println("*********");
     }
 

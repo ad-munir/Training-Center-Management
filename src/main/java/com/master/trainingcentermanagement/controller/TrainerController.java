@@ -220,7 +220,7 @@ public class TrainerController {
                 .email(email)
                 .phone(phone)
                 .keywords(keywords)
-                .password(passwordEncoder.encode(password))
+                .password(password)
                 .image(null)
                 .role(Role.TRAINER)
                 .active(true)

@@ -53,6 +53,7 @@ public class TrainerServiceImpl implements TrainerService {
                         entity.getLastname(),
                         entity.getEmail(),
                         entity.getPhone(),
+                        entity.getPassword(),
                         entity.getKeywords(),
                         entity.isActive(),
                         entity.getImage(),
