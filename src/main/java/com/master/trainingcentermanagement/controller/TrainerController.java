@@ -11,7 +11,7 @@ import com.master.trainingcentermanagement.user.User;
 import com.master.trainingcentermanagement.user.UserRepo;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+
 
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
